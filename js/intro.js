@@ -1,5 +1,5 @@
 // Flores cayendo (emoji)
-const flores = ["🌸","🌷","🌺","💐","🌹","Te amo", "Chiquitita"];
+const flores = ["🌸","🌷","🌺","💐","🌹","Te amo", "Chiquitita", "Princesa", "Amor mio", "Mi Mujer"];
 const contenedor = document.getElementById("flores");
 function crearFlor(){
   const flor = document.createElement("div");

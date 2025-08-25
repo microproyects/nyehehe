@@ -4,7 +4,7 @@
   --pastel-bg-3:#f5e6ff;
   --stem:#4caf50;
   --leaf:#57b36b;
-  --sun-petal:#f0e0b7;
+  --sun-petal:#f5ca5f;
   --sun-center:#a8948b;
   --tulip:#f38bbb;
   --tulip-dark:#e06aa1;
@@ -163,4 +163,4 @@
 
 /* Pollo */
 #pollo img{ width:120px; border-radius:50%; margin-bottom:10px; }
-#pollo .mensaje{ max-width: 90vw; }
+#pollo .mensaje{ max-width: 100vw; }
