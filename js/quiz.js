@@ -106,10 +106,10 @@ function cargarPregunta() {
       if(resp === pregunta.correcta){
         score++;
         btn.style.backgroundColor = "#4CAF50";
-        resultadoDiv.textContent = "✅ Correcto!";
+        resultadoDiv.textContent = "✅ Correcto amorrr!";
       } else {
         btn.style.backgroundColor = "#DC143C";
-        resultadoDiv.textContent = `❌ Incorrecto! La correcta era: ${pregunta.correcta}`;
+        resultadoDiv.textContent = `❌ Incorrecto amorrr! La correcta era: ${pregunta.correcta}`;
       }
 
       setTimeout(()=>{
