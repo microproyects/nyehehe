@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Rinconcito Contigo 💜</title>
+
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/menu.css">
+  <link rel="stylesheet" href="styles/intro.css"> <!-- estilos sorpresa -->
+</head>
+<body>
+  <!-- Pantalla de introducción -->
+  <!-- Pantalla de introducción -->
+<!-- Pantalla de introducción -->
+<div id="intro">
+  <h1>🌸 Feliz 4 Mesesitos, mi amor 🌸</h1>
+  <p>Gracias por caminar conmigo cada día 💕</p>
+
+  <!-- Pollo y mensaje -->
+  <div id="pollo">
+    <div class="pollo-cara"><img src="/assets/img/ui/pollo.png" alt=""></div>
+    <p class="mensaje">
+      Feliz 4 mesesitos mi amor 💜<br>
+      Perdóname, por la distancia no puedo darte unas flores,<br>
+      pero sí flores virtuales hechas con mucho amor 🌸
+    </p>
+  </div>
+
+  <!-- Ramo construido en HTML/CSS -->
+  <div id="ramo" class="bouquet">
+    <!-- Tallo 1 + girasol -->
+    <div class="stem" style="--x: -60px; --rot: -10deg;">
+      <div class="leaf" style="--pos:35%; --side:-1;"></div>
+      <div class="leaf" style="--pos:60%; --side:1;"></div>
+      <div class="sunflower">
+        <div class="center"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      </div>
+    </div>
+
+    <!-- Tallo 2 + tulipán -->
+    <div class="stem" style="--x: 0px; --rot: 0deg;">
+      <div class="leaf" style="--pos:30%; --side:1;"></div>
+      <div class="leaf" style="--pos:55%; --side:-1;"></div>
+      <div class="tulip">
+        <div class="bud"></div>
+        <div class="bud-top"></div>
+      </div>
+    </div>
+
+    <!-- Tallo 3 + girasol -->
+    <div class="stem" style="--x: 60px; --rot: 12deg;">
+      <div class="leaf" style="--pos:40%; --side:1;"></div>
+      <div class="leaf" style="--pos:65%; --side:-1;"></div>
+      <div class="sunflower">
+        <div class="center"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      </div>
+    </div>
+
+    <!-- Lazo -->
+    <div class="ribbon"></div>
+  </div>
+
+  <!-- Flores cayendo (emoji, sin imágenes) -->
+  <div id="flores"></div>
+</div>
+
+
+  <!-- Contenido principal oculto al inicio -->
+  <div class="container" id="main" style="display:none;">
+    <header>
+      <h1>🌸 Mi Rinconcito Contigo 🌸</h1>
+      <p>Un espacio pastel lleno de amor para ti 💕</p>
+    </header>
+
+    <main class="menu">
+      <a href="pages/cartas.html" class="menu-item">
+        <img src="assets/img/ui/carta.png" alt="Cartas">
+        <span>Cartas</span>
+      </a>
+
+      <a href="pages/galeria.html" class="menu-item">
+        <img src="assets/img/ui/galeria.png" alt="Galería">
+        <span>Galería</span>
+      </a>
+
+      <a href="pages/juegos.html" class="menu-item">
+        <img src="assets/img/ui/juegos.png" alt="Juegos">
+        <span>Juegos</span>
+      </a>
+
+      <a href="pages/momentos.html" class="menu-item">
+        <img src="assets/img/ui/momentos.png" alt="Momentos">
+        <span>Momentos</span>
+      </a>
+
+      <a href="pages/random.html" class="menu-item">
+        <img src="assets/img/ui/sorpresa.png" alt="Random">
+        <span>Sorpresa</span>
+      </a>
+    </main>
+
+    <footer>
+      <p>Con amor, tu pollo dormilón 💜🐧</p>
+    </footer>
+  </div>
+
+  <script src="js/intro.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ffe4e1, #fce4f4, #f0fff0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.juegos-contenedor {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.categorias button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 15px;
+  border: none;
+  background: #d39ff7;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.categorias button:hover {
+  transform: scale(1.05);
+}

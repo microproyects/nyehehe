@@ -1,0 +1,61 @@
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #6a4c93;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+}
+
+.menu-item {
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.menu-item img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+.menu-item span {
+  font-size: 0.9rem;
+  color: #6a4c93;
+  font-weight: 600;
+}
+
+.menu-item:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.8rem;
+  color: #444;
+}

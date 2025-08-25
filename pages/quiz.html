@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz romántico 💌</title>
+  <link rel="stylesheet" href="../styles/quiz.css">
+</head>
+<body>
+<div id="quiz-container">
+  <h2>Quiz divertido 💖</h2>
+  
+  <p id="pregunta-texto"></p>
+
+  <!-- Contenedor de respuestas en cuadrícula 2x2 -->
+  <div id="respuestas-container" class="grid-2x2"></div>
+
+  <!-- Resultado -->
+  <div id="resultado"></div>
+
+  <!-- Botones -->
+  <button id="modo-oscuro-btn">Modo Oscuro 🌙</button>
+  <button id="regresar-btn">Regresar ⬅️</button>
+</div>
+
+<!-- Confeti de stickers -->
+<div id="confeti-container"></div>
+
+<script src="../js/quiz.js"></script>
+<script>
+  // Modo oscuro
+  const btnOscuro = document.getElementById("modo-oscuro-btn");
+  btnOscuro.addEventListener("click", () => document.body.classList.toggle("dark"));
+
+  // Botón regresar
+  const btnRegresar = document.getElementById("regresar-btn");
+  btnRegresar.addEventListener("click", () => window.location.href="../index.html");
+</script>
+</body>
+</html>
