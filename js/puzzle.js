@@ -6,7 +6,7 @@ const regresarBtn = document.getElementById("regresar-btn");
 const confetiContainer = document.getElementById("confeti-container");
 
 const puzzles = [
-  "../assets/sticker5.webp",
+  "../assets/sticker9.webp",
   "../assets/sticker3.webp",
   "../assets/sticker1.png",
   "../assets/sticker8.webp",
@@ -18,15 +18,20 @@ const puzzles = [
 ];
 
 const stickerImgs = [
-  "../assets/sticker6.webp",
+  "../assets/sticker6.webp", 
   "../assets/sticker2.webp",
+  "../assets/sticker1.png",
   "../assets/sticker3.webp",
   "../assets/sticker4.webp",
-  "../assets/sticker8.webp"
+  "../assets/sticker8.webp",
+  "../assets/sticker9.webp",
+  "../assets/sticker5.webp",
+  "../assets/sticker7.webp"
+  
 ];
 
 let currentPuzzle = 0;
-const tamaño = 9;
+const tamaño = 13;
 let piezas = [];
 
 function cargarPuzzle(src){
@@ -133,14 +138,14 @@ function checkPuzzle(){
   });
 
   if(completo){
-    resultadoDiv.textContent="🎉 ¡Felicidades amorrrr!";
+    resultadoDiv.textContent="🎉 Felicidades amorrrr mi vida mi genesis Iiiiiiiiiiiiii";
     lanzarConfeti();
     continuarBtn.style.display="inline-block";
   }
 }
 
 function lanzarConfeti(){
-  for(let i=0;i<25;i++){
+  for(let i=0;i<35;i++){
     const img = document.createElement("img");
     img.src = stickerImgs[Math.floor(Math.random()*stickerImgs.length)];
     img.classList.add("sticker-confeti");

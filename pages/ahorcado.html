@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahorcado del Amor 💕</title>
+  <link rel="stylesheet" href="../styles/ahorcado.css">
+</head>
+<body>
+  <div class="ahorcado-contenedor">
+    <header>
+      <h2>💖 Ahorcado del Amor 💖</h2>
+      <div class="acciones">
+        <button id="backBtn">⬅️ Regresar</button>
+        <button id="darkModeBtn">🌙 Modo oscuro</button>
+        <button id="fullscreenBtn">⛶ Pantalla completa</button>
+      </div>
+    </header>
+
+    <p>Adivina la palabra secreta</p>
+
+    <canvas id="canvas" width="220" height="220"></canvas>
+
+    <div id="palabra" class="palabra"></div>
+    <div id="intentos" class="intentos">Intentos: 12</div>
+    <div id="mensaje" class="mensaje"></div>
+
+    <div class="letras" id="letras"></div>
+
+    <button onclick="reiniciar()">🔄 Reiniciar</button>
+  </div>
+
+  <script src="../js/ahorcado.js"></script>
+</body>
+</html>
