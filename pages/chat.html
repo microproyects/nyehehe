@@ -769,7 +769,7 @@
 
             // ---------- New room flow ----------
             btnNewRoom.addEventListener('click', async () => {
-                const name = prompt('Nombre de la nueva sala (ej: Viajes, Sorpresas):');
+                const name = prompt('Nombre de la nueva sala :');
                 if (!name) return;
                 // create room
                 await createRoom(name.trim());
