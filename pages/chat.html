@@ -29,15 +29,14 @@
     </script>
 
     <style>
-        /* (estilos compactados, copia los tuyos o usa los previos) */
         :root {
             --side-width: 320px;
             --muted: #94a3b8;
-            --accent: #7dd3fc
+            --accent: #7dd3fc;
         }
 
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         body {
@@ -46,10 +45,9 @@
             background: #04060a;
             color: #e6eef8;
             display: flex;
-            align-items: center;
             justify-content: center;
             padding: 16px;
-            min-height: 100vh
+            min-height: 100vh;
         }
 
         .card {
@@ -61,16 +59,17 @@
             gap: 1px;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
             min-height: 560px;
-            max-height: 90vh
+            max-height: 90vh;
         }
 
+        /* Panel izquierdo */
         .panel-left {
             width: var(--side-width);
             padding: 14px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.02)
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .rooms-list {
@@ -79,7 +78,7 @@
             gap: 6px;
             max-height: 40vh;
             overflow: auto;
-            padding-right: 6px
+            padding-right: 6px;
         }
 
         .room-item {
@@ -87,22 +86,24 @@
             border-radius: 8px;
             cursor: pointer;
             color: var(--muted);
-            border: 1px solid rgba(255, 255, 255, 0.02)
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: all 0.2s;
         }
 
         .room-item.active {
             background: linear-gradient(90deg, rgba(125, 211, 252, 0.06), rgba(125, 211, 252, 0.02));
             color: var(--accent);
             font-weight: 700;
-            border-color: rgba(125, 211, 252, 0.12)
+            border-color: rgba(125, 211, 252, 0.12);
         }
 
+        /* Panel derecho */
         .panel-right {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: linear-gradient(180deg, #001 0%, #032 100%);
-            position: relative
+            position: relative;
         }
 
         .header {
@@ -110,115 +111,167 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03)
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
+        /* Mensajes */
         .messages {
-            padding: 18px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            overflow: auto;
+            gap: 8px;
+            overflow-y: auto;
             flex: 1;
             min-height: 220px;
-            max-height: calc(90vh - 240px)
+            max-height: calc(90vh - 240px);
+            scroll-behavior: smooth;
         }
 
-        .composer {
-            display: flex;
-            gap: 8px;
-            padding: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            align-items: center
-        }
-
-        .composer input {
-            flex: 1;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            background: rgba(255, 255, 255, 0.02);
-            color: inherit
-        }
-
-        .btn-send {
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: none;
-            background: linear-gradient(90deg, #06b6d4, #38bdf8);
-            color: #042431;
-            font-weight: 700;
-            cursor: pointer
-        }
-
-        .btn-ico {
-            padding: 8px 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: transparent;
-            color: var(--muted);
-            cursor: pointer
-        }
-
+        /* Burbujas */
         .msg {
-            max-width: 74%;
-            padding: 10px 12px;
-            border-radius: 10px;
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 14px;
             font-size: 14px;
-            line-height: 1.3;
+            line-height: 1.4;
             display: flex;
             gap: 8px;
             align-items: flex-start;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4)
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.3s ease-in-out;
+            position: relative;
         }
 
         .msg.daniel {
             align-self: flex-end;
             background: rgba(189, 61, 78, 0.41);
             flex-direction: row-reverse;
-            color: #fff
+            color: #fff;
         }
 
         .msg.leidy {
             align-self: flex-start;
             background: #252a36;
-            color: #e6eef8
+            color: #e6eef8;
         }
 
+        /* Avatar */
         .bubble-avatar {
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            overflow: hidden;
+            
             flex-shrink: 0;
-            border: 2px solid rgba(255, 255, 255, 0.06)
+            border: 2px solid rgba(255, 255, 255, 0.06);
         }
 
         .bubble-avatar img {
             width: 100%;
             height: 100%;
-            object-fit: cover
+            object-fit: cover;
         }
 
+        /* Contenido burbuja */
         .bubble-content {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            max-width: 100%
+            gap: 4px;
+            max-width: 100%;
         }
 
         .bubble-text {
             white-space: pre-wrap;
-            word-break: break-word
+            word-break: break-word;
         }
 
         .bubble-image {
             width: 220px;
             max-width: 100%;
             border-radius: 12px;
-            margin-top: 6px
+            margin-top: 6px;
         }
 
+        /* Composer */
+        .composer {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            align-items: center;
+        }
+
+        .composer input {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
+            color: inherit;
+        }
+
+        .btn-send {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(90deg, #06b6d4, #38bdf8);
+            color: #042431;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Indicador escribiendo */
+        .typing-indicator {
+            font-size: 13px;
+            color: #7dd3fc;
+            padding-left: 12px;
+            font-style: italic;
+            height: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .typing-indicator span::after {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin-left: 3px;
+            margin-right: 1px;
+            background: #7dd3fc;
+            border-radius: 50%;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.2;
+                transform: scale(0.6);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.2;
+                transform: scale(0.6);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stickers panel */
         .sticker-panel {
             position: absolute;
             left: calc(var(--side-width)+12px);
@@ -230,13 +283,13 @@
             padding: 10px;
             display: none;
             overflow: auto;
-            z-index: 50
+            z-index: 50;
         }
 
         .sticker-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px
+            gap: 10px;
         }
 
         .sticker-item {
@@ -244,48 +297,237 @@
             height: 64px;
             border-radius: 8px;
             overflow: hidden;
-            cursor: pointer
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 720px) {
+            .panel-left {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .msg {
+                max-width: 90%;
+                font-size: 14px;
+                margin-right: 12px;
+            }
+
+            .composer {
+                flex-direction: column;
+            }
+
+            .btn-send,
+            .btn-ico {
+                width: 100%;
+                margin-top: 4px;
+            }
+
+            .bubble-avatar {
+                width: 28px;
+                height: 28px;
+            }
         }
 
         .msg-menu {
-            position: absolute;
-            background: #111;
-            border: 1px solid #333;
-            padding: 4px;
-            display: none;
-            flex-direction: row;
-            gap: 4px;
-            border-radius: 12px;
-            z-index: 9999
-        }
+    position: absolute;
+    background: rgba(20,20,30,0.95);
+    color: #fff;
+    padding: 6px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
 
-        .reply-box {
-            padding: 6px;
-            font-size: 12px;
-            opacity: 0.9;
-            border-left: 3px solid #00b3ff;
-            margin-bottom: 4px
-        }
+.msg-menu .menu-item {
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
 
-        .reaction {
-            font-size: 16px;
-            margin-top: 4px
-        }
+.msg-menu .menu-item:hover {
+    background: rgba(125,211,252,0.1);
+}
+/* Fotos de perfil más pequeñas en móvil */
+@media (max-width: 480px) {
+    .avatar img,
+    .bubble-avatar img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
 
-        .load-more {
-            margin: 8px auto;
-            padding: 6px 10px;
-            background: #111;
-            border-radius: 8px;
-            cursor: pointer
-        }
+/* Botones de audio, stickers e imagen más compactos */
+.btn-ico {
+    padding: 6px 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(125, 211, 252, 0.1);
+    color: #7dd3fc;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 
-        @media (max-width:720px) {
-            .panel-left {
-                display: none
-            }
-        }
+.btn-ico:hover {
+    background: rgba(125, 211, 252, 0.2);
+}
+
+/* Composer en móvil más compacto */
+@media (max-width: 480px) {
+    .composer {
+        gap: 2px;
+        padding: 2px;
+    }
+
+    .btn-send {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    #msgInput {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+}
+
+/* Reducir tamaño de stickers dentro de panel en móvil */
+@media (max-width: 480px) {
+    .sticker-item img {
+        width: 48px;
+        height: 48px;
+    }
+}
+/* ==== ESTILOS TIPO WHATSAPP PARA MÓVIL ==== */
+@media (max-width: 480px) {
+    /* Panel derecho ocupa toda la pantalla */
+    .panel-right {
+        padding: 8px;
+    }
+    .messages{
+        padding: 2px;
+    }
+    /* Avatar más pequeño */
+    .avatar img,
+    .bubble-avatar img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    /* Burbuja de mensaje más compacta */
+    .msg {
+        max-width: 85%;
+        font-size: 13px;
+        padding: 8px 10px;
+        border-radius: 12px;
+    }
+
+    .bubble-image {
+        width: 160px;
+        max-width: 70%;
+        border-radius: 10px;
+    }
+
+    audio {
+        width: 160px;
+    }
+
+
+
+    #msgInput {
+        flex: 1;
+        padding: 8px 10px;
+        font-size: 14px;
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.03);
+        background: rgba(255,255,255,0.02);
+    }
+
+    /* Botones circulares pequeños */
+    .btn-ico {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        font-size: 18px;
+        border-radius: 50%;
+        background: rgba(125,211,252,0.1);
+        color: #7dd3fc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-ico:hover {
+        background: rgba(125,211,252,0.2);
+    }
+
+    .btn-send {
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 20px;
+        background: linear-gradient(90deg, #06b6d4, #38bdf8);
+        color: #042431;
+    }
+    .card{
+        max-height: 94vh;
+    }
+    /* Panel de stickers compacto */
+    .sticker-panel {
+        bottom: 64px;
+        padding: 6px;
+        max-height: 180px;
+        scrollbar-width: auto;
+    }
+
+    .sticker-item {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+    }
+
+    .sticker-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+    .botonesxd{
+        display: flex;
+        gap: 6px;
+    }
+}
+/* Mantener avatar visible al lado del mensaje */
+@media (max-width: 480px) {
+    .msg {
+        display: flex !important;
+        flex-direction: row !important; /* evita que se invierta */
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .bubble-avatar {
+        display: block !important; /* asegúrate que siempre se vea */
+    }
+
+    .bubble-content {
+        max-width: calc(100% - 36px); /* deja espacio para el avatar */
+    }
+}
+@media (max-width: 480px) {
+    .bubble-image {
+        width: 120px;
+        max-width: 70%;
+        border-radius: 10px;
+    }
+}
+
     </style>
+
 </head>
 
 <body>
@@ -298,14 +540,14 @@
     </div>
 
     <div class="card" id="appCard">
-        <div class="panel-left">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-                <div style="font-weight:700">Salas</div>
-                <button id="btnNewRoom" class="new-room-btn">+ Nuevo chat</button>
-            </div>
-            <div class="rooms-list" id="roomsList"></div>
-            <div style="margin-top:auto" class="meta">Perfil activo: <span id="activeName" class="small">—</span></div>
-        </div>
+       <div class="panel-left">
+    <div class="rooms-header" style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-weight:700">Salas</div>
+    </div>
+    <div class="rooms-list" id="roomList"></div>
+    <div style="margin-top:auto" class="meta">Perfil activo: <span id="activeName" class="small">—</span></div>
+</div>
+
 
         <div class="panel-right">
             <div class="header">
@@ -322,10 +564,12 @@
             </div>
 
             <div id="messages" class="messages" aria-live="polite"></div>
+            <div id="typingIndicator" class="typing-indicator"></div>
+
             <div id="loadMore" class="load-more" style="display:none">⬆ Cargar más historial</div>
 
             <div class="sticker-panel" id="stickerPanel" aria-hidden="true">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
                     <div style="font-weight:700">Stickers</div><button id="closeStickers"
                         style="background:transparent;border:none;color:var(--muted);cursor:pointer">Cerrar</button>
                 </div>
@@ -334,9 +578,11 @@
 
             <form id="composer" class="composer" onsubmit="return false;" style="display:none">
                 <input id="msgInput" placeholder="Escribe un mensaje..." autocomplete="off" />
+                <div class="botonesxd">
                 <button id="btnRecord" class="btn-ico" type="button" title="Grabar audio">🎤</button>
                 <button id="btnSticker" class="btn-ico" type="button" title="Stickers">🟡</button>
                 <button id="btnImage" class="btn-ico" type="button" title="Enviar imagen">🖼️</button>
+                </div>
                 <input type="file" id="imageInput" accept="image/*" style="display:none">
                 <button id="sendBtn" class="btn-send">Enviar</button>
             </form>
@@ -357,105 +603,97 @@
     </div>
 
     <script>
-        (function () {
-            // ------------- CONFIG -------------
-            const CACHE_LIMIT = 5000;            // mensajes por sala a mantener en local (ajusta si quieres más)
-            const PAGE_SIZE = 40;                // cuántos mensajes trae cada "cargar más"
-            const DEBOUNCE_MS = 400;             // agrupa envíos rápidos
-            const STICKERS = ["pollo.png", "sticker1.png", "sticker2.webp", "sticker3.webp", "sticker4.webp", "sticker5.webp", "sticker6.webp", "sticker7.webp", "sticker9.webp", "hey-floppa.webp", "no-no-cat.webp"];
+        (async function () {
+            // ---------------- CONFIG ----------------
+            const ROOM_ID = "general";
+            const ROOM_NAME = "General";
+            const CACHE_LIMIT = 5000;
+            const PAGE_SIZE = 40;
+            const DEBOUNCE_MS = 400;
+            const STICKERS = ["pollo.png", "sticker1.png", "sticker2.webp", "sticker3.webp", "sticker4.webp", "sticker5.webp", "sticker6.webp", "sticker7.webp", "sticker9.webp", "hey-floppa.webp", "no-no-cat.webp", "no-no-cat.webp"];
 
             // DOM
             const loginOverlay = document.getElementById('loginOverlay');
             const passwordInput = document.getElementById('passwordInput');
             const loginBtn = document.getElementById('loginBtn');
             const activeNameEl = document.getElementById('activeName');
-            const headerAvatarImg = document.getElementById('headerAvatarImg');
             const messagesEl = document.getElementById('messages');
             const composer = document.getElementById('composer');
             const msgInput = document.getElementById('msgInput');
             const sendBtn = document.getElementById('sendBtn');
-
+            const roomListEl = document.getElementById('roomList'); // panel izquierdo
             const btnRecord = document.getElementById('btnRecord');
             const btnSticker = document.getElementById('btnSticker');
             const stickerPanel = document.getElementById('stickerPanel');
             const stickerGrid = document.getElementById('stickerGrid');
             const closeStickers = document.getElementById('closeStickers');
-
             const btnImage = document.getElementById('btnImage');
             const imageInput = document.getElementById('imageInput');
 
-            const roomsListEl = document.getElementById('roomsList');
-            const btnNewRoom = document.getElementById('btnNewRoom');
-            const loadMoreBtn = document.getElementById('loadMore');
-            const msgMenu = document.getElementById('msgMenu');
-
-            // state
+            // STATE
             const accessKeys = { "marzo10": "leidy", "enero10": "daniel" };
             let currentUser = null;
-            let currentRoomId = null;
-            let unsubscribeNewMessages = null;    // listener only for new msgs
-            let oldestLoadedDoc = null;           // for pagination older
-            let newestTimestamp = 0;              // time of last message we have
-            let recorder = null, audioChunks = [];
+            let newestTimestamp = 0;
             let replyTo = null;
+            let recorder = null, audioChunks = [];
             let sendTimer = null;
+            let typingTimer = null;
+            const TYPING_TIMEOUT = 1500;
 
-            // Fire helpers
+            // --------------- FIREBASE HELPERS -----------------
             function fire() { return window.__FIRE && window.__FIRE.db ? window.__FIRE : null; }
-            function esc(s = '') { return String(s).replace(/[&<>"']/g, t => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[t])); }
+            async function ensureFireReady() { const start = Date.now(); while (!fire() || !fire().db) { if (Date.now() - start > 3000) break; await new Promise(r => setTimeout(r, 50)); } }
 
-            // ----------------- Local cache utilities -----------------
-            function cacheKey(roomId) { return 'chat_cache_' + roomId; }
-            function loadCache(roomId) {
-                try {
-                    const raw = localStorage.getItem(cacheKey(roomId));
-                    return raw ? JSON.parse(raw) : { msgs: [], newest: 0 };
-                } catch (e) { return { msgs: [], newest: 0 }; }
-            }
-            function saveCache(roomId, cache) {
-                try {
-                    // keep only last CACHE_LIMIT messages
-                    if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
-                    localStorage.setItem(cacheKey(roomId), JSON.stringify(cache));
-                } catch (e) { }
-            }
+            // --------------- CACHE -----------------
+            function loadCache() { try { const raw = localStorage.getItem('chat_cache'); return raw ? JSON.parse(raw) : { msgs: [], newest: 0 }; } catch (e) { return { msgs: [], newest: 0 }; } }
+            function saveCache(cache) { try { if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT); localStorage.setItem('chat_cache', JSON.stringify(cache)); } catch (e) { } }
 
-            // ----------------- Login -----------------
+            // --------------- LOGIN -----------------
             loginBtn.addEventListener('click', tryLogin);
             passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
 
             function tryLogin() {
                 const pass = passwordInput.value.trim();
-                if (!pass) return alert('Escribe la contraseña.');
                 const name = accessKeys[pass];
-                if (!name) return alert('Contraseña incorrecta.');
+                if (!name) return alert('Contraseña incorrecta');
                 currentUser = name;
-                headerAvatarImg.src = (currentUser === 'daniel') ? 'daniel.jpg' : 'leidy.jpg';
                 activeNameEl.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
-                composer.style.display = 'flex';
                 loginOverlay.style.display = 'none';
-                initRooms();
+                composer.style.display = 'flex';
+                initRoomList();
                 loadStickers();
+                initChat();
             }
 
-            // --------------- Stickers ---------------
+            // ----------------- ROOM LIST -----------------
+            async function initRoomList() {
+                await ensureFireReady();
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, doc, getDoc, setDoc } = fs;
+                roomListEl.innerHTML = `<div class="room-item active" id="room-${ROOM_ID}">${ROOM_NAME}</div>`;
+                // Crear sala si no existe
+                const roomRef = doc(fire().db, 'chat_rooms', ROOM_ID);
+                const snap = await getDoc(roomRef);
+                if (!snap.exists()) { await setDoc(roomRef, { name: ROOM_NAME, createdAt: Date.now() }); }
+            }
+
+            // --------------- STICKERS -----------------
             function loadStickers() {
                 stickerGrid.innerHTML = '';
                 STICKERS.forEach(s => {
                     const item = document.createElement('div'); item.className = 'sticker-item';
-                    const img = document.createElement('img'); img.src = 'stickers/' + s; img.loading = 'lazy'; img.decoding = 'async';
+                    const img = document.createElement('img'); img.src = 'stickers/' + s;
                     item.appendChild(img);
                     item.addEventListener('click', async () => { await sendMessage({ sticker: img.src }); hideStickers(); });
                     stickerGrid.appendChild(item);
                 });
             }
-            btnSticker.addEventListener('click', (e) => { e.preventDefault(); toggleStickers(); });
+            btnSticker.addEventListener('click', e => { e.preventDefault(); toggleStickers(); });
             closeStickers.addEventListener('click', hideStickers);
             function toggleStickers() { stickerPanel.style.display = (stickerPanel.style.display === 'block') ? 'none' : 'block'; }
-            function showStickers() { stickerPanel.style.display = 'block'; }
             function hideStickers() { stickerPanel.style.display = 'none'; }
 
-            // --------------- Image upload ---------------
+            // ----------------- IMAGE UPLOAD -----------------
             btnImage.addEventListener('click', () => imageInput.click());
             imageInput.addEventListener('change', () => {
                 const file = imageInput.files[0]; if (!file) return;
@@ -464,429 +702,169 @@
                 reader.readAsDataURL(file);
             });
 
-            // --------------- Audio recording ---------------
-            btnRecord.addEventListener('click', async (e) => { e.preventDefault(); if (recorder && recorder.state === 'recording') stopRecording(); else await startRecording(); });
+            // ----------------- AUDIO -----------------
+            btnRecord.addEventListener('click', async e => { e.preventDefault(); if (recorder && recorder.state === 'recording') stopRecording(); else await startRecording(); });
             async function startRecording() {
-                if (!currentUser || !currentRoomId) { alert('Entra a una sala antes de grabar.'); return; }
+                if (!currentUser) return alert('Entra al chat antes de grabar');
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    recorder = new MediaRecorder(stream);
-                    audioChunks = [];
+                    recorder = new MediaRecorder(stream); audioChunks = [];
                     recorder.ondataavailable = e => { if (e.data && e.data.size) audioChunks.push(e.data); };
                     recorder.onstop = async () => {
                         const blob = new Blob(audioChunks, { type: audioChunks[0]?.type || 'audio/webm' });
-                        if (blob.size > 1024 * 1024 * 0.9) { alert('Audio muy grande, hazlo más corto.'); return; }
+                        if (blob.size > 1024 * 1024 * 0.9) { alert('Audio muy grande'); return; }
                         const reader = new FileReader();
                         reader.onloadend = async () => { await sendMessage({ audio: reader.result, mime: blob.type }); };
                         reader.readAsDataURL(blob);
                         try { stream.getTracks().forEach(t => t.stop()); } catch (e) { }
                     };
-                    recorder.start();
-                    btnRecord.textContent = '⏹️ Grabando...';
+                    recorder.start(); btnRecord.textContent = '⏹️ Grabando...';
                     setTimeout(() => { if (recorder && recorder.state === 'recording') stopRecording(); }, 20000);
-                } catch (e) { console.error(e); alert('No se pudo acceder al micrófono.'); }
+                } catch (e) { alert('No se pudo acceder al micrófono'); console.error(e); }
             }
             function stopRecording() { if (recorder && recorder.state === 'recording') recorder.stop(); recorder = null; btnRecord.textContent = '🎤'; }
 
-            // --------------- Rooms (light) ---------------
-            async function initRooms() {
-                // For simplicity: we listen to chat_rooms collection but only once to render list.
+            // ----------------- CHAT INIT -----------------
+            async function initChat() {
                 await ensureFireReady();
-                const db = fire().db;
-                // lightweight get: not a continuous listener (reduces reads)
-                try {
-                    const col = await (await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).getDocs((await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).collection(db, 'chat_rooms'));
-                    const rooms = col.docs.map(d => ({ id: d.id, ...d.data() }));
-                    if (rooms.length === 0) {
-                        // create default general (one-time write)
-                        await (await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).addDoc((await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).collection(db, 'chat_rooms'), { name: 'General', createdAt: Date.now() });
-                        return initRooms();
-                    }
-                    renderRoomsList(rooms);
-                    if (!currentRoomId) selectRoom(rooms[0].id, rooms[0].name);
-                } catch (e) {
-                    console.error('initRooms failed', e);
-                    // fallback: create UI minimal rooms if rules block getDocs
-                    renderRoomsList([{ id: 'general', name: 'General' }]);
-                    if (!currentRoomId) selectRoom('general', 'General');
-                }
+                await loadLatestMessages();
+                listenNewMessages();
+                listenTypingStatus();
             }
 
-            function renderRoomsList(list) {
-                roomsListEl.innerHTML = '';
-                list.forEach(r => {
-                    const el = document.createElement('div'); el.className = 'room-item'; el.dataset.roomId = r.id; el.textContent = r.name || 'Sala';
-                    el.addEventListener('click', () => selectRoom(r.id, r.name));
-                    roomsListEl.appendChild(el);
+            async function loadLatestMessages() {
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, query, orderBy, limit, getDocs } = fs;
+                const msgsRef = collection(fire().db, `chat_rooms/${ROOM_ID}/messages`);
+                try {
+                    const q = query(msgsRef, orderBy('time', 'desc'), limit(PAGE_SIZE));
+                    const snap = await getDocs(q);
+                    if (!snap.empty) {
+                        const docs = snap.docs.reverse();
+                        const msgs = docs.map(d => ({ id: d.id, ...d.data() }));
+                        newestTimestamp = msgs[msgs.length - 1].time || Date.now();
+                        saveCache({ msgs, newest: newestTimestamp });
+                        renderMessages(msgs);
+                    }
+                } catch (e) { console.error('loadLatestMessages', e); }
+            }
+
+            async function listenNewMessages() {
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, query, where, orderBy, onSnapshot } = fs;
+                const msgsRef = collection(fire().db, `chat_rooms/${ROOM_ID}/messages`);
+                const qNew = query(msgsRef, where('time', '>', newestTimestamp), orderBy('time'));
+                onSnapshot(qNew, snap => {
+                    if (!snap.empty) { appendNewMessages(snap.docs.map(d => ({ id: d.id, ...d.data() }))); }
                 });
             }
-            btnNewRoom.addEventListener('click', async () => { const n = prompt('Nombre sala:'); if (!n) return; await createRoom(n); });
 
-            async function createRoom(name) {
-                await ensureFireReady();
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { collection, addDoc } = fs;
-                try { await addDoc(collection(fire().db, 'chat_rooms'), { name, createdAt: Date.now() }); }
-                catch (e) { console.error('createRoom error', e); alert('Error creando sala'); }
+            function appendNewMessages(newMsgs) {
+                if (!newMsgs || !newMsgs.length) return;
+                const cache = loadCache();
+                const existingIds = new Set(cache.msgs.map(m => m.id));
+                const filtered = newMsgs.filter(m => !existingIds.has(m.id));
+                if (!filtered.length) return;
+                cache.msgs = cache.msgs.concat(filtered);
+                cache.newest = Math.max(cache.newest || 0, ...filtered.map(m => m.time || 0));
+                saveCache(cache);
+                filtered.forEach(m => appendMessageToDOM(m));
+                newestTimestamp = cache.newest;
             }
 
-            // --------------- Message sync strategy ---------------
-            // Load from cache (immediate), render, then:
-            // - fetch latest PAGE_SIZE from Firestore (if newer than cache.newest)
-            // - set a small real-time listener for only messages with time > newest (new messages)
-            // - oldestLoadedDoc stores cursor for "load more" older messages (descending queries)
-
-            
-            
-            // Merge messages arrays by id, preserving order (ascending time)
-            function mergeMessages(oldArr, newArr) {
-                const map = new Map();
-                oldArr.forEach(m => map.set(m.id, m));
-                newArr.forEach(m => map.set(m.id, m));
-                // return sorted by time asc
-                return Array.from(map.values()).sort((a, b) => (a.time || 0) - (b.time || 0));
-            }
-
-            // append new messages (from listener)
-            
-
-            // Load older messages (pagination)
-            loadMoreBtn.addEventListener('click', async () => {
-                await loadOlderPage();
-            });
-
-            async function loadOlderPage() {
-                if (!currentRoomId) return;
-                await ensureFireReady();
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { collection, query, orderBy, limit, getDocs, startAfter } = fs;
-                const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
-                try {
-                    // If we have an oldestLoadedDoc snapshot, query older than that by ordering desc and startAfter
-                    // Simpler fallback: query orderBy('time','desc'), limit(PAGE_SIZE), and skip ones we already have by comparing time
-                    const qOlder = query(msgsRef, orderBy('time', 'desc'), limit(PAGE_SIZE));
-                    const snap = await getDocs(qOlder);
-                    if (snap.empty) return;
-                    // docs are newest->oldest; reverse to oldest->newest
-                    const docs = snap.docs;
-                    docs.reverse();
-                    const msgs = docs.map(d => ({ id: d.id, ...d.data() }));
-                    // merge preserving order
-                    const cache = loadCache(currentRoomId);
-                    const merged = mergeMessages(msgs.concat(cache.msgs), []); // ensure older at front
-                    saveCache(currentRoomId, { msgs: merged, newest: cache.newest || newestTimestamp });
-                    renderMessages(merged);
-                } catch (e) { console.error('loadOlderPage', e); }
-            }
-
-            
-
-
-// ----------------- Cargar última página histórica si no hay caché -----------------
-async function loadLatestPageHistory(){
-    if(!currentRoomId) return;
-    await ensureFireReady();
-
-    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-    const { collection, query, orderBy, limit, getDocs } = fs;
-
-    const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
-    try{
-        const q = query(msgsRef, orderBy('time','desc'), limit(PAGE_SIZE));
-        const snap = await getDocs(q);
-        if(!snap.empty){
-            const docs = snap.docs;
-            docs.reverse(); // ordenar ascendente
-            const msgs = docs.map(d => ({ id:d.id, ...d.data() }));
-            newestTimestamp = msgs[msgs.length-1].time || Date.now();
-            oldestLoadedDoc = docs[0];
-            // Guardar en caché y render
-            saveCache(currentRoomId, { msgs, newest: newestTimestamp });
-            renderMessages(msgs);
-        }
-    }catch(e){ console.error('loadLatestPageHistory', e); }
-}
-
-// ----------------- Listener para nuevos mensajes -----------------
-
-// ----------------- Seleccionar sala y cargar mensajes -----------------
-async function selectRoom(roomId, roomName){
-    if(currentRoomId === roomId) return;
-
-    // UI highlight
-    const prev = roomsListEl.querySelector('.room-item.active');
-    if(prev) prev.classList.remove('active');
-    const el = roomsListEl.querySelector(`[data-room-id="${roomId}"]`);
-    if(el) el.classList.add('active');
-
-    currentRoomId = roomId;
-    document.getElementById('chatTitle').textContent = roomName || 'Sala';
-    messagesEl.innerHTML = '';
-
-    // cancelar listener anterior si existe
-    cancelNewListener();
-
-    // Cargar cache local
-    const cache = loadCache(roomId);
-    newestTimestamp = cache.newest || 0;
-
-    if(cache.msgs && cache.msgs.length){
-        renderMessages(cache.msgs, { preserveScroll:true });
-    } else {
-        await loadLatestPageHistory();
-    }
-
-    // Iniciar listener en tiempo real para nuevos mensajes
-    listenNewMessages();
-
-    // Mostrar composer
-    composer.style.display = 'flex';
-}
-
-// ----------------- Listener para nuevos mensajes en tiempo real -----------------
-async function listenNewMessages(){
-    if(!currentRoomId) return;
-    await ensureFireReady();
-    cancelNewListener();
-
-    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-    const { collection, query, where, orderBy, onSnapshot } = fs;
-
-    const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
-
-    // Solo mensajes con time > newestTimestamp
-    const qNew = query(msgsRef, where('time', '>', newestTimestamp), orderBy('time'));
-    unsubscribeNewMessages = onSnapshot(qNew, snap => {
-        if(!snap.empty){
-            const newMsgs = snap.docs.map(d => ({ id:d.id, ...d.data() }));
-            appendNewMessages(newMsgs);
-        }
-    }, err => console.error('Listener error:', err));
-}
-
-// ----------------- Agregar mensajes nuevos al DOM y caché -----------------
-function appendNewMessages(newMsgs){
-    if(!currentRoomId || !newMsgs || !newMsgs.length) return;
-
-    const cache = loadCache(currentRoomId);
-    const existingIds = new Set(cache.msgs.map(m => m.id));
-
-    const filtered = newMsgs.filter(m => !existingIds.has(m.id));
-    if(!filtered.length) return;
-
-    // actualizar caché
-    cache.msgs = cache.msgs.concat(filtered);
-    if(cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
-    cache.newest = Math.max(cache.newest || 0, ...filtered.map(m => m.time || 0));
-    saveCache(currentRoomId, cache);
-
-    // render solo los nuevos
-    filtered.forEach(m => appendMessageToDOM(m));
-
-    // actualizar timestamp global
-    newestTimestamp = cache.newest;
-}
-
-// ----------------- Cancelar listener -----------------
-function cancelNewListener(){
-    try{
-        if(unsubscribeNewMessages){
-            unsubscribeNewMessages();
-            unsubscribeNewMessages = null;
-        }
-    }catch(e){}
-}
-
-// ----------------- Cargar última página histórica si no hay caché -----------------
-async function loadLatestPageHistory(){
-    if(!currentRoomId) return;
-    await ensureFireReady();
-
-    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-    const { collection, query, orderBy, limit, getDocs } = fs;
-
-    const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
-    try{
-        const q = query(msgsRef, orderBy('time','desc'), limit(PAGE_SIZE));
-        const snap = await getDocs(q);
-        if(!snap.empty){
-            const docs = snap.docs;
-            docs.reverse(); // ordenar ascendente
-            const msgs = docs.map(d => ({ id:d.id, ...d.data() }));
-            newestTimestamp = msgs[msgs.length-1].time || Date.now();
-            oldestLoadedDoc = docs[0];
-            saveCache(currentRoomId, { msgs, newest: newestTimestamp });
-            renderMessages(msgs);
-        }
-    }catch(e){ console.error('loadLatestPageHistory', e); }
-}
-
-// ----------------- Cancelar listener -----------------
-function cancelNewListener(){
-    try{
-        if(unsubscribeNewMessages){
-            unsubscribeNewMessages();
-            unsubscribeNewMessages = null;
-        }
-    }catch(e){}
-}
-
-            
-
-            // disconnect listener when tab hidden
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) { cancelNewListener(); }
-                else { if (currentRoomId) loadLatestPageAndListen(); }
-            });
-
-            // --------------- Sending messages (debounced) ---------------
+            // ----------------- SEND MESSAGE -----------------
             async function sendMessage(extra = {}) {
-                if (!currentUser || !currentRoomId) return;
-                const text = (msgInput && msgInput.value) ? msgInput.value.trim() : '';
+                if (!currentUser) return;
+                const text = msgInput?.value?.trim() || '';
                 if (!text && !extra.audio && !extra.sticker && !extra.image) return;
-
-                // debounce writes: if user sends many messages quickly, queue small delay
                 if (sendTimer) clearTimeout(sendTimer);
                 sendTimer = setTimeout(async () => {
-                    await ensureFireReady();
                     const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
                     const { collection, addDoc } = fs;
                     const data = { from: currentUser, time: Date.now(), text: text || '', ...extra };
-                    if (replyTo) { data.replyTo = { id: replyTo.id, from: replyTo.from, text: replyTo.text || null }; replyTo = null; if (msgInput) msgInput.placeholder = 'Escribe un mensaje...'; }
-                    try {
-                        await addDoc(collection(fire().db, `chat_rooms/${currentRoomId}/messages`), data);
-                        if (msgInput) msgInput.value = '';
-                    } catch (e) { console.error('sendMessage error', e); alert('No se pudo enviar (reglas o cuota)'); }
+                    if (replyTo) { data.replyTo = { id: replyTo.id, from: replyTo.from, text: replyTo.text || null }; replyTo = null; msgInput.placeholder = 'Escribe un mensaje...'; }
+                    try { await addDoc(collection(fire().db, `chat_rooms/${ROOM_ID}/messages`), data); if (msgInput) msgInput.value = ''; }
+                    catch (e) { console.error('sendMessage', e); alert('No se pudo enviar'); }
                 }, DEBOUNCE_MS);
             }
             sendBtn.addEventListener('click', e => { e.preventDefault(); sendMessage(); });
             msgInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
 
-            // --------------- Update message (reaction) ---------------
-            async function updateMessage(msgId, updateObj) {
-                if (!currentRoomId) return;
-                await ensureFireReady();
+            // ----------------- TYPING -----------------
+            msgInput.addEventListener('input', () => {
+                setTypingStatus(true);
+                if (typingTimer) clearTimeout(typingTimer);
+                typingTimer = setTimeout(() => setTypingStatus(false), TYPING_TIMEOUT);
+            });
+
+            async function setTypingStatus(isTyping) {
                 const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
                 const { doc, setDoc } = fs;
                 try {
-                    const ref = doc(fire().db, `chat_rooms/${currentRoomId}/messages`, msgId);
-                    await setDoc(ref, updateObj, { merge: true });
-                } catch (e) { console.error('updateMessage', e); }
+                    await setDoc(doc(fire().db, `chat_rooms/${ROOM_ID}/typing_status`, currentUser), { typing: isTyping, time: Date.now() }, { merge: true });
+                } catch (e) { console.error(e); }
             }
 
-            // --------------- Message menu (reactions/reply) ---------------
-            function openMessageMenu(e, msg) {
-                e.stopPropagation();
-                const pad = 8; const menu = msgMenu;
-                menu.style.display = 'flex'; menu.setAttribute('aria-hidden', 'false');
-                const vw = window.innerWidth, vh = window.innerHeight;
-                let left = e.clientX + pad, top = e.clientY + pad;
-                if (left + menu.offsetWidth > vw) left = vw - menu.offsetWidth - pad;
-                if (top + menu.offsetHeight > vh) top = vh - menu.offsetHeight - pad;
-                menu.style.left = left + 'px'; menu.style.top = top + 'px';
-
-                const handler = async ev => {
-                    const react = ev.target.dataset.react; const action = ev.target.dataset.action;
-                    if (react) await updateMessage(msg.id, { reaction: react });
-                    else if (action === 'reply') { replyTo = msg; if (msgInput) { msgInput.placeholder = `Responder a "${msg.text || 'imagen'}"...`; msgInput.focus(); } }
-                    menu.style.display = 'none'; menu.setAttribute('aria-hidden', 'true');
-                    document.removeEventListener('click', handler);
-                };
-                document.addEventListener('click', handler);
-            }
-
-            // --------------- Render messages (from cache or fetch) ---------------
-            function renderMessages(list, opts = {}) {
-                // opts.preserveScroll = if true, don't reset scroll if user was near bottom
-                const preserve = !!opts.preserveScroll;
-                const atBottom = (messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight) < 150;
-                messagesEl.innerHTML = '';
-                if (!list || !list.length) {
-                    const p = document.createElement('div'); p.className = 'msg leidy'; p.style.maxWidth = '100%'; p.textContent = 'Aún no hay mensajes en esta sala.'; messagesEl.appendChild(p); return;
-                }
-                list.forEach(m => {
-                    const div = document.createElement('div'); const cls = (m.from === currentUser) ? 'daniel' : 'leidy'; div.className = 'msg ' + cls;
-                    let inner = `<div class="bubble-content">`;
-                    inner += `<div class="bubble-name">${esc(m.from || '')}</div>`;
-                    if (m.replyTo) inner += `<div class="reply-box">${esc(m.replyTo.from || '')}: ${esc(m.replyTo.text || 'Imagen')}</div>`;
-                    if (m.text) inner += `<div class="bubble-text">${esc(m.text)}</div>`;
-                    // bubble image now uses loading="lazy" + decoding="async"
-                    if (m.image) inner += `<img src="${m.image}" loading="lazy" decoding="async" class="bubble-image" alt="imagen">`;
-                    if (m.sticker) inner += `<div><img src="${m.sticker}" loading="lazy" decoding="async" style="width:140px;border-radius:12px"></div>`;
-                    if (m.audio) inner += `<div><audio controls preload="none" src="${m.audio}"></audio></div>`;
-                    if (m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
-                    inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div>`;
-                    inner += `</div>`;
-                    div.innerHTML = (m.from === currentUser) ? inner + avatarTag(m.from) : avatarTag(m.from) + inner;
-                    div.addEventListener('click', (e) => {
-                        const ignore = ['AUDIO', 'BUTTON', 'A', 'INPUT', 'IMG', 'svg', 'path'];
-                        if (ignore.includes(e.target.tagName)) return;
-                        openMessageMenu(e, m);
-                    });
-                    messagesEl.appendChild(div);
+            async function listenTypingStatus() {
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, onSnapshot } = fs;
+                onSnapshot(collection(fire().db, `chat_rooms/${ROOM_ID}/typing_status`), snap => {
+                    const typingUsers = [];
+                    snap.docs.forEach(d => { const data = d.data(); if (data.typing && d.id !== currentUser) typingUsers.push(d.id); });
+                    document.getElementById('typingIndicator').textContent = typingUsers.length ? `${typingUsers.join(', ')} escribiendo...` : '';
                 });
-                if (preserve && atBottom) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
-                else if (!preserve) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
-
-                // save cache after render (efficient)
-                const cache = loadCache(currentRoomId); cache.msgs = list; cache.newest = list.length ? list[list.length - 1].time : cache.newest || 0; saveCache(currentRoomId, cache);
-
-                // show load more if messages length >= PAGE_SIZE (likely there are older)
-                loadMoreBtn.style.display = (list.length >= PAGE_SIZE) ? 'block' : 'none';
             }
 
+            // ----------------- RENDER -----------------
+            function renderMessages(list) { messagesEl.innerHTML = ''; list.forEach(m => appendMessageToDOM(m)); }
             function appendMessageToDOM(m) {
-                // get cache, append, render last part only (for performance we re-render entire list only rarely)
-                const cache = loadCache(currentRoomId);
-                cache.msgs.push(m); if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
-                cache.newest = Math.max(cache.newest || 0, m.time || 0);
-                saveCache(currentRoomId, cache);
-                // append node
-                const div = document.createElement('div'); const cls = (m.from === currentUser) ? 'daniel' : 'leidy'; div.className = 'msg ' + cls;
-                let inner = `<div class="bubble-content">`;
-                inner += `<div class="bubble-name">${esc(m.from || '')}</div>`;
-                if (m.text) inner += `<div class="bubble-text">${esc(m.text)}</div>`;
-                if (m.image) inner += `<img src="${m.image}" loading="lazy" decoding="async" class="bubble-image" alt="imagen">`;
-                if (m.sticker) inner += `<div><img src="${m.sticker}" loading="lazy" decoding="async" style="width:140px;border-radius:12px"></div>`;
-                if (m.audio) inner += `<div><audio controls preload="none" src="${m.audio}"></audio></div>`;
-                if (m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
-                inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div>`;
-                inner += `</div>`;
-                div.innerHTML = (m.from === currentUser) ? inner + avatarTag(m.from) : avatarTag(m.from) + inner;
-                messagesEl.appendChild(div);
-                // auto scroll if near bottom
-                const nearBottom = (messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight) < 150;
-                if (nearBottom) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
-            }
+    const cache = loadCache();
+    cache.msgs.push(m);
+    if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
+    cache.newest = Math.max(cache.newest || 0, m.time || 0);
+    saveCache(cache);
 
-            // Avatars use lazy + decoding
-            function avatarTag(name) { const s = esc(name || ''); return `<div class="bubble-avatar"><img src="${s}.jpg" alt="${s}" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>`; }
+    const div = document.createElement('div');
+    div.className = 'msg ' + ((m.from === currentUser) ? 'daniel' : 'leidy');
 
-            // --------------- Utilities ---------------
-            async function ensureFireReady() {
-                const start = Date.now();
-                while (!fire() || !fire().db) {
-                    if (Date.now() - start > 3000) break;
-                    await new Promise(r => setTimeout(r, 50));
-                }
-            }
+    // Determinar avatar
+    const avatarUrl = m.from === 'daniel' ? 'daniel.jpg' : 'leidy.jpg';
 
-            // --------------- expose for debug ---------------
-            window._chatOpt = { sendMessage, selectRoom };
+    // HTML del mensaje
+    let inner = `
+      <div class="bubble-avatar"><img src="${avatarUrl}" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="bubble-content">
+        <div class="bubble-name">${m.from || ''}</div>
+    `;
 
-            // initial focus
-            passwordInput.focus();
+    if (m.replyTo) inner += `<div class="reply-box">${m.replyTo.from}: ${m.replyTo.text || 'Imagen'}</div>`;
+    if (m.text) inner += `<div class="bubble-text">${m.text}</div>`;
+    if (m.image) inner += `<img src="${m.image}" class="bubble-image" loading="lazy" decoding="async">`;
+    if (m.sticker) inner += `<img src="${m.sticker}" class="bubble-image" style="width:140px;border-radius:12px">`;
+    if (m.audio) inner += `<audio controls preload="none" src="${m.audio}"></audio>`;
+    if (m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
 
-            // click outside hides sticker panel
-            document.addEventListener('click', (e) => {
-                if (stickerPanel.style.display === 'block') {
-                    if (!stickerPanel.contains(e.target) && !btnSticker.contains(e.target)) hideStickers();
-                }
-            });
+    inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div></div>`;
 
-            // done
+    div.innerHTML = inner;
+
+    // Permitir responder al mensaje
+    div.addEventListener('click', () => { replyTo = m; });
+
+    messagesEl.appendChild(div);
+
+    // Scroll automático
+    messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+}
+
+
+            // click fuera oculta stickers
+            document.addEventListener('click', e => { if (stickerPanel.style.display === 'block' && !stickerPanel.contains(e.target) && !btnSticker.contains(e.target)) hideStickers(); });
+
         })();
     </script>
+
+
 </body>
 
 </html>
