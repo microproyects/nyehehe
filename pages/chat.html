@@ -3,143 +3,74 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chat </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Chat — Optimizado</title>
 
-    <!-- Firebase SDK v10 (modular) -->
+    <!-- Firebase SDK (modular) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import {
-            getFirestore,
-            collection,
-            addDoc,
-            doc,
-            setDoc,
-            getDoc,
-            getDocs,
-            query,
-            orderBy,
-            onSnapshot,
-            where,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        // ---- Tu config de Firebase (no la cambies si ya funciona) ----
+        // --- Pega tu config aquí si quieres cambiar ---
         const firebaseConfig = {
-            apiKey: "AIzaSyBjav1rUjRdhf9KMqVzMg1uMGCjTtVALlQ",
-            authDomain: "chat-ec7bc.firebaseapp.com",
-            projectId: "chat-ec7bc",
-            storageBucket: "chat-ec7bc.firebasestorage.app",
-            messagingSenderId: "564739519423",
-            appId: "1:564739519423:web:ef0af5b0055a2be0b1670a"
+            apiKey: "AIzaSyDB8Ffk2v4SzHpuSdAtwBo9mMk7d-FVoEk",
+            authDomain: "again-39689.firebaseapp.com",
+            projectId: "again-39689",
+            storageBucket: "again-39689.firebasestorage.app",
+            messagingSenderId: "777451941392",
+            appId: "1:777451941392:web:1e2ffbb0817a0c5019a495",
+            measurementId: "G-6P2YR4RLFJ"
         };
 
-        // Inicializar Firebase + Firestore
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Exponer utilidades en window para el script no modular que sigue
-        window.__FIRE = { db, collection, addDoc, doc, setDoc, getDoc, getDocs, query, orderBy, onSnapshot, where, serverTimestamp };
+        window.__FIRE = { db };
     </script>
 
     <style>
+        /* (estilos compactados, copia los tuyos o usa los previos) */
         :root {
-            --bg: #080c13;
-            --card: #080d16;
-            --muted: #94a3b8;
-            --accent: #7dd3fc;
-            --bubble-daniel: #bd3d4e69;
-            --bubble-leidy: #292f3f;
-            --text-on-daniel: #ffffff;
-            --text-on-leidy: #e6eef8;
             --side-width: 320px;
+            --muted: #94a3b8;
+            --accent: #7dd3fc
         }
 
         * {
             box-sizing: border-box
         }
 
-        html,
         body {
-            height: 100%;
-            margin: 0
-        }
-
-        body {
-            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-            background: linear-gradient(180deg, #01070f 0%, #050b1a 60%);
+            margin: 0;
+            font-family: Inter, system-ui, Arial;
+            background: #04060a;
             color: #e6eef8;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 16px;
-            min-height: 100vh;
-            overflow-y: auto;
+            min-height: 100vh
         }
 
-        /* Card container */
         .card {
             width: 100%;
             max-width: 1100px;
             border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
             display: flex;
             gap: 1px;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
             min-height: 560px;
-            max-height: 90vh;
+            max-height: 90vh
         }
 
-        /* Left panel (profiles + rooms) */
         .panel-left {
             width: var(--side-width);
-            min-width: 220px;
             padding: 14px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .left-top {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .title {
-            font-weight: 700;
-            font-size: 20px
-        }
-
-        .subtitle {
-            font-size: 13px;
-            color: var(--muted)
-        }
-
-        .profiles {
-            display: flex;
-            gap: 8px;
-        }
-
-        .profile-btn {
-            flex: 1;
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            color: var(--muted);
-            cursor: default;
-            font-weight: 600;
-            text-align: center
-        }
-
-        .rooms-section {
-            margin-top: 6px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            background: rgba(255, 255, 255, 0.02)
         }
 
         .rooms-list {
@@ -148,59 +79,30 @@
             gap: 6px;
             max-height: 40vh;
             overflow: auto;
-            padding-right: 6px;
+            padding-right: 6px
         }
 
         .room-item {
             padding: 8px 10px;
             border-radius: 8px;
             cursor: pointer;
-            background: transparent;
             color: var(--muted);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: space-between;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.02)
         }
 
         .room-item.active {
             background: linear-gradient(90deg, rgba(125, 211, 252, 0.06), rgba(125, 211, 252, 0.02));
             color: var(--accent);
-            border-color: rgba(125, 211, 252, 0.12);
             font-weight: 700;
+            border-color: rgba(125, 211, 252, 0.12)
         }
 
-        .new-room-btn {
-            padding: 8px 10px;
-            border-radius: 10px;
-            border: 1px dashed rgba(255, 255, 255, 0.06);
-            background: transparent;
-            color: var(--muted);
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .meta {
-            font-size: 13px;
-            color: var(--muted)
-        }
-
-        .small {
-            font-size: 12px;
-            color: #9fb6cc
-        }
-
-        /* Right panel */
         .panel-right {
             flex: 1;
             display: flex;
             flex-direction: column;
-            min-height: 420px;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0' stop-color='%23000712'/><stop offset='1' stop-color='%230f2a44'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><g fill='rgba(255,255,255,0.03)'><circle cx='100' cy='120' r='200'/><circle cx='1000' cy='700' r='300'/></g></svg>");
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            background: linear-gradient(180deg, #001 0%, #032 100%);
+            position: relative
         }
 
         .header {
@@ -208,48 +110,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            backdrop-filter: blur(3px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.06));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03)
         }
 
-        .h-left {
-            display: flex;
-            gap: 12px;
-            align-items: center
-        }
-
-        .avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.03);
-            background: linear-gradient(135deg, #0b2a3e, #0d2230);
-            flex-shrink: 0;
-        }
-
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block
-        }
-
-        .chat-title {
-            font-weight: 700
-        }
-
-        .chat-sub {
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        /* Messages area: fixed height with internal scroll */
         .messages {
             padding: 18px;
             display: flex;
@@ -258,10 +121,45 @@
             overflow: auto;
             flex: 1;
             min-height: 220px;
-            max-height: calc(90vh - 240px);
+            max-height: calc(90vh - 240px)
         }
 
-        /* message bubble (semi-rounded style = option 2) */
+        .composer {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            align-items: center
+        }
+
+        .composer input {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
+            color: inherit
+        }
+
+        .btn-send {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(90deg, #06b6d4, #38bdf8);
+            color: #042431;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn-ico {
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer
+        }
+
         .msg {
             max-width: 74%;
             padding: 10px 12px;
@@ -271,54 +169,37 @@
             display: flex;
             gap: 8px;
             align-items: flex-start;
-            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.35);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4)
         }
 
-        /* Daniel (derecha) */
         .msg.daniel {
             align-self: flex-end;
-            background: var(--bubble-daniel);
-            color: var(--text-on-daniel);
-            border-bottom-right-radius: 6px;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-            padding-left: 12px;
-            padding-right: 14px;
-            text-align: right;
+            background: rgba(189, 61, 78, 0.41);
             flex-direction: row-reverse;
+            color: #fff
         }
 
-        /* Leidy (izquierda) */
         .msg.leidy {
             align-self: flex-start;
-            background: var(--bubble-leidy);
-            color: var(--text-on-leidy);
-            border-bottom-left-radius: 6px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            padding-left: 14px;
-            padding-right: 12px;
-            text-align: left;
+            background: #252a36;
+            color: #e6eef8
         }
 
-        /* avatar inside bubble */
-        .msg .bubble-avatar {
+        .bubble-avatar {
             width: 44px;
             height: 44px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            border: 2px solid rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.06)
         }
 
-        .msg .bubble-avatar img {
+        .bubble-avatar img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block
+            object-fit: cover
         }
 
-        /* content area (name + text) */
         .bubble-content {
             display: flex;
             flex-direction: column;
@@ -326,267 +207,662 @@
             max-width: 100%
         }
 
-        .bubble-name {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--muted)
-        }
-
         .bubble-text {
             white-space: pre-wrap;
             word-break: break-word
         }
 
-        .bubble-meta {
-            font-size: 11px;
-            color: var(--muted);
-            margin-top: 4px;
-            opacity: 0.9;
-            align-self: flex-end
-        }
-
-        /* composer */
-        .composer {
-            display: flex;
-            gap: 8px;
-            padding: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.00));
-        }
-
-        .composer input {
-            flex: 1;
-            padding: 10px 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            color: inherit
-        }
-
-        .btn-send {
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: none;
-            font-weight: 700;
-            cursor: pointer;
-            background: linear-gradient(90deg, #06b6d4, #38bdf8);
-            color: #042431
-        }
-
-        /* login overlay */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 40;
-            padding: 16px;
-            overflow: auto;
-        }
-
-        .login-card {
-            width: 100%;
-            max-width: 420px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-            padding: 20px;
+        .bubble-image {
+            width: 220px;
+            max-width: 100%;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            margin-top: 6px
         }
 
-        .login-card h2 {
-            margin: 0 0 6px 0
+        .sticker-panel {
+            position: absolute;
+            left: calc(var(--side-width)+12px);
+            bottom: 72px;
+            right: 20px;
+            max-height: 220px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            overflow: auto;
+            z-index: 50
         }
 
-        .login-card p {
-            margin: 0 0 12px 0;
-            color: var(--muted)
-        }
-
-        .login-row {
+        .sticker-grid {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap
+            flex-wrap: wrap;
+            gap: 10px
         }
 
-        .login-row input {
-            flex: 1;
-            min-width: 160px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            color: inherit
-        }
-
-        .login-row button {
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: none;
-            background: linear-gradient(90deg, #06b6d4, #38bdf8);
-            color: #042431;
-            font-weight: 700;
+        .sticker-item {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            overflow: hidden;
             cursor: pointer
         }
 
-        .login-note {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 8px
+        .msg-menu {
+            position: absolute;
+            background: #111;
+            border: 1px solid #333;
+            padding: 4px;
+            display: none;
+            flex-direction: row;
+            gap: 4px;
+            border-radius: 12px;
+            z-index: 9999
         }
 
-        /* responsive tweaks */
-        @media (max-width:900px) {
-            :root {
-                --side-width: 280px;
-            }
+        .reply-box {
+            padding: 6px;
+            font-size: 12px;
+            opacity: 0.9;
+            border-left: 3px solid #00b3ff;
+            margin-bottom: 4px
+        }
+
+        .reaction {
+            font-size: 16px;
+            margin-top: 4px
+        }
+
+        .load-more {
+            margin: 8px auto;
+            padding: 6px 10px;
+            background: #111;
+            border-radius: 8px;
+            cursor: pointer
         }
 
         @media (max-width:720px) {
-            .card {
-                flex-direction: column;
-                max-height: 95vh
-            }
-
             .panel-left {
-                width: 100%;
-                min-width: auto;
-                flex-direction: row;
-                padding: 12px;
-                gap: 6px;
-                overflow-x: auto
-            }
-
-            .panel-right {
-                min-height: 360px
-            }
-
-            .header {
-                padding: 12px
-            }
-
-            .messages {
-                padding: 12px;
-                max-height: calc(70vh - 140px)
-            }
-
-            .msg .bubble-avatar {
-                width: 36px;
-                height: 36px
-            }
-
-            .rooms-list {
-                max-height: 24vh
+                display: none
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="card" id="appCard" aria-live="polite">
+    <div id="msgMenu" class="msg-menu" aria-hidden="true">
+        <div class="menu-item" data-react="❤️">❤️</div>
+        <div class="menu-item" data-react="👍">👍</div>
+        <div class="menu-item" data-react="😂">😂</div>
+        <div class="menu-item" data-react="🔥">🔥</div>
+        <div class="menu-item" data-action="reply">💬 Responder</div>
+    </div>
+
+    <div class="card" id="appCard">
         <div class="panel-left">
-            <div class="left-top">
-                <div class="title">Chat</div>
-                <div class="subtitle">Perfiles y salas</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-weight:700">Salas</div>
+                <button id="btnNewRoom" class="new-room-btn">+ Nuevo chat</button>
             </div>
-
-
-            <div class="rooms-section">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div style="font-weight:700">Salas</div>
-                    <button class="new-room-btn" id="btnNewRoom">+ Nuevo chat</button>
-                </div>
-                <div class="rooms-list" id="roomsList">
-                    <!-- Rooms from Firestore -->
-                </div>
-            </div>
-
+            <div class="rooms-list" id="roomsList"></div>
             <div style="margin-top:auto" class="meta">Perfil activo: <span id="activeName" class="small">—</span></div>
         </div>
 
         <div class="panel-right">
             <div class="header">
-                <div class="h-left">
-                    <div class="avatar" id="headerAvatar">
-                        <img src="daniel.jpg" alt="avatar" id="headerAvatarImg" onerror="this.style.display='none'">
-                    </div>
+                <div style="display:flex;gap:12px;align-items:center">
+                    <!-- header avatar ahora con lazy + decoding -->
+                    <div class="avatar"><img src="daniel.jpg" id="headerAvatarImg" loading="lazy" decoding="async"
+                            style="width:52px;height:52px;object-fit:cover" onerror="this.style.display='none'"></div>
                     <div>
-                        <div class="chat-title" id="chatTitle">Selecciona una sala</div>
-                        <div class="chat-sub" id="chatSub">Inicia sesión para entrar</div>
+                        <div id="chatTitle" class="chat-title">Selecciona una sala</div>
+                        <div id="chatSub" class="chat-sub">Inicia sesión</div>
                     </div>
                 </div>
-                <div>
+                <div><small class="small">Chat </small></div>
+            </div>
+
+            <div id="messages" class="messages" aria-live="polite"></div>
+            <div id="loadMore" class="load-more" style="display:none">⬆ Cargar más historial</div>
+
+            <div class="sticker-panel" id="stickerPanel" aria-hidden="true">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <div style="font-weight:700">Stickers</div><button id="closeStickers"
+                        style="background:transparent;border:none;color:var(--muted);cursor:pointer">Cerrar</button>
                 </div>
+                <div class="sticker-grid" id="stickerGrid"></div>
             </div>
 
-            <div class="messages" id="messages" aria-live="polite">
-                <!-- Mensajes inyectados -->
-            </div>
-
-            <form id="composer" class="composer" onsubmit="return false;" style="display:none;">
+            <form id="composer" class="composer" onsubmit="return false;" style="display:none">
                 <input id="msgInput" placeholder="Escribe un mensaje..." autocomplete="off" />
+                <button id="btnRecord" class="btn-ico" type="button" title="Grabar audio">🎤</button>
+                <button id="btnSticker" class="btn-ico" type="button" title="Stickers">🟡</button>
+                <button id="btnImage" class="btn-ico" type="button" title="Enviar imagen">🖼️</button>
+                <input type="file" id="imageInput" accept="image/*" style="display:none">
                 <button id="sendBtn" class="btn-send">Enviar</button>
             </form>
         </div>
     </div>
 
-    <!-- Login overlay -->
-    <div class="overlay" id="loginOverlay">
-        <div class="login-card" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-            <h2 id="loginTitle">Acceso al chat</h2>
-
-            <div class="login-row">
-                <input id="passwordInput" placeholder="Contraseña secreta" autocomplete="off" />
-                <button id="loginBtn">Entrar</button>
+    <div class="overlay" id="loginOverlay"
+        style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60">
+        <div
+            style="background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:20px;border-radius:12px;width:100%;max-width:420px;">
+            <h2>Acceso al chat</h2>
+            <div style="display:flex;gap:8px">
+                <input id="passwordInput" placeholder="Contraseña secreta"
+                    style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:inherit" />
+                <button id="loginBtn" class="btn-send">Entrar</button>
             </div>
         </div>
     </div>
 
     <script>
         (function () {
-            // ---------- Config acceso ----------
-            const accessKeys = { "marzo10": "leidy", "enero10": "daniel" };
+            // ------------- CONFIG -------------
+            const CACHE_LIMIT = 5000;            // mensajes por sala a mantener en local (ajusta si quieres más)
+            const PAGE_SIZE = 40;                // cuántos mensajes trae cada "cargar más"
+            const DEBOUNCE_MS = 400;             // agrupa envíos rápidos
+            const STICKERS = ["pollo.png", "sticker1.png", "sticker2.webp", "sticker3.webp", "sticker4.webp", "sticker5.webp", "sticker6.webp", "sticker7.webp", "sticker9.webp", "hey-floppa.webp", "no-no-cat.webp"];
 
-            // ---------- DOM refs ----------
+            // DOM
             const loginOverlay = document.getElementById('loginOverlay');
             const passwordInput = document.getElementById('passwordInput');
             const loginBtn = document.getElementById('loginBtn');
             const activeNameEl = document.getElementById('activeName');
-            const chatTitle = document.getElementById('chatTitle');
-            const chatSub = document.getElementById('chatSub');
             const headerAvatarImg = document.getElementById('headerAvatarImg');
             const messagesEl = document.getElementById('messages');
             const composer = document.getElementById('composer');
             const msgInput = document.getElementById('msgInput');
             const sendBtn = document.getElementById('sendBtn');
 
+            const btnRecord = document.getElementById('btnRecord');
+            const btnSticker = document.getElementById('btnSticker');
+            const stickerPanel = document.getElementById('stickerPanel');
+            const stickerGrid = document.getElementById('stickerGrid');
+            const closeStickers = document.getElementById('closeStickers');
+
+            const btnImage = document.getElementById('btnImage');
+            const imageInput = document.getElementById('imageInput');
+
             const roomsListEl = document.getElementById('roomsList');
             const btnNewRoom = document.getElementById('btnNewRoom');
+            const loadMoreBtn = document.getElementById('loadMore');
+            const msgMenu = document.getElementById('msgMenu');
 
-            // ---------- Estado ----------
+            // state
+            const accessKeys = { "marzo10": "leidy", "enero10": "daniel" };
             let currentUser = null;
             let currentRoomId = null;
-            let currentRoomName = null;
-            let unsubscribeMessages = null;
+            let unsubscribeNewMessages = null;    // listener only for new msgs
+            let oldestLoadedDoc = null;           // for pagination older
+            let newestTimestamp = 0;              // time of last message we have
+            let recorder = null, audioChunks = [];
+            let replyTo = null;
+            let sendTimer = null;
 
-            // Fire helpers (expuestos en window.__FIRE por el módulo)
-            function fire() {
-                return window.__FIRE || null;
-            }
-
-            // escape
+            // Fire helpers
+            function fire() { return window.__FIRE && window.__FIRE.db ? window.__FIRE : null; }
             function esc(s = '') { return String(s).replace(/[&<>"']/g, t => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[t])); }
-            function formatTime(ts) {
+
+            // ----------------- Local cache utilities -----------------
+            function cacheKey(roomId) { return 'chat_cache_' + roomId; }
+            function loadCache(roomId) {
                 try {
-                    if (!ts) return '';
-                    if (typeof ts === 'number') return new Date(ts).toLocaleString();
-                    if (ts.toDate) return ts.toDate().toLocaleString();
-                    return new Date(ts).toLocaleString();
-                } catch (e) { return ''; }
+                    const raw = localStorage.getItem(cacheKey(roomId));
+                    return raw ? JSON.parse(raw) : { msgs: [], newest: 0 };
+                } catch (e) { return { msgs: [], newest: 0 }; }
+            }
+            function saveCache(roomId, cache) {
+                try {
+                    // keep only last CACHE_LIMIT messages
+                    if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
+                    localStorage.setItem(cacheKey(roomId), JSON.stringify(cache));
+                } catch (e) { }
             }
 
-            // Esperar Fire utils
+            // ----------------- Login -----------------
+            loginBtn.addEventListener('click', tryLogin);
+            passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+            function tryLogin() {
+                const pass = passwordInput.value.trim();
+                if (!pass) return alert('Escribe la contraseña.');
+                const name = accessKeys[pass];
+                if (!name) return alert('Contraseña incorrecta.');
+                currentUser = name;
+                headerAvatarImg.src = (currentUser === 'daniel') ? 'daniel.jpg' : 'leidy.jpg';
+                activeNameEl.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
+                composer.style.display = 'flex';
+                loginOverlay.style.display = 'none';
+                initRooms();
+                loadStickers();
+            }
+
+            // --------------- Stickers ---------------
+            function loadStickers() {
+                stickerGrid.innerHTML = '';
+                STICKERS.forEach(s => {
+                    const item = document.createElement('div'); item.className = 'sticker-item';
+                    const img = document.createElement('img'); img.src = 'stickers/' + s; img.loading = 'lazy'; img.decoding = 'async';
+                    item.appendChild(img);
+                    item.addEventListener('click', async () => { await sendMessage({ sticker: img.src }); hideStickers(); });
+                    stickerGrid.appendChild(item);
+                });
+            }
+            btnSticker.addEventListener('click', (e) => { e.preventDefault(); toggleStickers(); });
+            closeStickers.addEventListener('click', hideStickers);
+            function toggleStickers() { stickerPanel.style.display = (stickerPanel.style.display === 'block') ? 'none' : 'block'; }
+            function showStickers() { stickerPanel.style.display = 'block'; }
+            function hideStickers() { stickerPanel.style.display = 'none'; }
+
+            // --------------- Image upload ---------------
+            btnImage.addEventListener('click', () => imageInput.click());
+            imageInput.addEventListener('change', () => {
+                const file = imageInput.files[0]; if (!file) return;
+                const reader = new FileReader();
+                reader.onloadend = async () => { await sendMessage({ image: reader.result }); imageInput.value = ''; };
+                reader.readAsDataURL(file);
+            });
+
+            // --------------- Audio recording ---------------
+            btnRecord.addEventListener('click', async (e) => { e.preventDefault(); if (recorder && recorder.state === 'recording') stopRecording(); else await startRecording(); });
+            async function startRecording() {
+                if (!currentUser || !currentRoomId) { alert('Entra a una sala antes de grabar.'); return; }
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    recorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    recorder.ondataavailable = e => { if (e.data && e.data.size) audioChunks.push(e.data); };
+                    recorder.onstop = async () => {
+                        const blob = new Blob(audioChunks, { type: audioChunks[0]?.type || 'audio/webm' });
+                        if (blob.size > 1024 * 1024 * 0.9) { alert('Audio muy grande, hazlo más corto.'); return; }
+                        const reader = new FileReader();
+                        reader.onloadend = async () => { await sendMessage({ audio: reader.result, mime: blob.type }); };
+                        reader.readAsDataURL(blob);
+                        try { stream.getTracks().forEach(t => t.stop()); } catch (e) { }
+                    };
+                    recorder.start();
+                    btnRecord.textContent = '⏹️ Grabando...';
+                    setTimeout(() => { if (recorder && recorder.state === 'recording') stopRecording(); }, 20000);
+                } catch (e) { console.error(e); alert('No se pudo acceder al micrófono.'); }
+            }
+            function stopRecording() { if (recorder && recorder.state === 'recording') recorder.stop(); recorder = null; btnRecord.textContent = '🎤'; }
+
+            // --------------- Rooms (light) ---------------
+            async function initRooms() {
+                // For simplicity: we listen to chat_rooms collection but only once to render list.
+                await ensureFireReady();
+                const db = fire().db;
+                // lightweight get: not a continuous listener (reduces reads)
+                try {
+                    const col = await (await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).getDocs((await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).collection(db, 'chat_rooms'));
+                    const rooms = col.docs.map(d => ({ id: d.id, ...d.data() }));
+                    if (rooms.length === 0) {
+                        // create default general (one-time write)
+                        await (await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).addDoc((await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js")).collection(db, 'chat_rooms'), { name: 'General', createdAt: Date.now() });
+                        return initRooms();
+                    }
+                    renderRoomsList(rooms);
+                    if (!currentRoomId) selectRoom(rooms[0].id, rooms[0].name);
+                } catch (e) {
+                    console.error('initRooms failed', e);
+                    // fallback: create UI minimal rooms if rules block getDocs
+                    renderRoomsList([{ id: 'general', name: 'General' }]);
+                    if (!currentRoomId) selectRoom('general', 'General');
+                }
+            }
+
+            function renderRoomsList(list) {
+                roomsListEl.innerHTML = '';
+                list.forEach(r => {
+                    const el = document.createElement('div'); el.className = 'room-item'; el.dataset.roomId = r.id; el.textContent = r.name || 'Sala';
+                    el.addEventListener('click', () => selectRoom(r.id, r.name));
+                    roomsListEl.appendChild(el);
+                });
+            }
+            btnNewRoom.addEventListener('click', async () => { const n = prompt('Nombre sala:'); if (!n) return; await createRoom(n); });
+
+            async function createRoom(name) {
+                await ensureFireReady();
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, addDoc } = fs;
+                try { await addDoc(collection(fire().db, 'chat_rooms'), { name, createdAt: Date.now() }); }
+                catch (e) { console.error('createRoom error', e); alert('Error creando sala'); }
+            }
+
+            // --------------- Message sync strategy ---------------
+            // Load from cache (immediate), render, then:
+            // - fetch latest PAGE_SIZE from Firestore (if newer than cache.newest)
+            // - set a small real-time listener for only messages with time > newest (new messages)
+            // - oldestLoadedDoc stores cursor for "load more" older messages (descending queries)
+
+            
+            
+            // Merge messages arrays by id, preserving order (ascending time)
+            function mergeMessages(oldArr, newArr) {
+                const map = new Map();
+                oldArr.forEach(m => map.set(m.id, m));
+                newArr.forEach(m => map.set(m.id, m));
+                // return sorted by time asc
+                return Array.from(map.values()).sort((a, b) => (a.time || 0) - (b.time || 0));
+            }
+
+            // append new messages (from listener)
+            
+
+            // Load older messages (pagination)
+            loadMoreBtn.addEventListener('click', async () => {
+                await loadOlderPage();
+            });
+
+            async function loadOlderPage() {
+                if (!currentRoomId) return;
+                await ensureFireReady();
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, query, orderBy, limit, getDocs, startAfter } = fs;
+                const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
+                try {
+                    // If we have an oldestLoadedDoc snapshot, query older than that by ordering desc and startAfter
+                    // Simpler fallback: query orderBy('time','desc'), limit(PAGE_SIZE), and skip ones we already have by comparing time
+                    const qOlder = query(msgsRef, orderBy('time', 'desc'), limit(PAGE_SIZE));
+                    const snap = await getDocs(qOlder);
+                    if (snap.empty) return;
+                    // docs are newest->oldest; reverse to oldest->newest
+                    const docs = snap.docs;
+                    docs.reverse();
+                    const msgs = docs.map(d => ({ id: d.id, ...d.data() }));
+                    // merge preserving order
+                    const cache = loadCache(currentRoomId);
+                    const merged = mergeMessages(msgs.concat(cache.msgs), []); // ensure older at front
+                    saveCache(currentRoomId, { msgs: merged, newest: cache.newest || newestTimestamp });
+                    renderMessages(merged);
+                } catch (e) { console.error('loadOlderPage', e); }
+            }
+
+            
+
+
+// ----------------- Cargar última página histórica si no hay caché -----------------
+async function loadLatestPageHistory(){
+    if(!currentRoomId) return;
+    await ensureFireReady();
+
+    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+    const { collection, query, orderBy, limit, getDocs } = fs;
+
+    const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
+    try{
+        const q = query(msgsRef, orderBy('time','desc'), limit(PAGE_SIZE));
+        const snap = await getDocs(q);
+        if(!snap.empty){
+            const docs = snap.docs;
+            docs.reverse(); // ordenar ascendente
+            const msgs = docs.map(d => ({ id:d.id, ...d.data() }));
+            newestTimestamp = msgs[msgs.length-1].time || Date.now();
+            oldestLoadedDoc = docs[0];
+            // Guardar en caché y render
+            saveCache(currentRoomId, { msgs, newest: newestTimestamp });
+            renderMessages(msgs);
+        }
+    }catch(e){ console.error('loadLatestPageHistory', e); }
+}
+
+// ----------------- Listener para nuevos mensajes -----------------
+
+// ----------------- Seleccionar sala y cargar mensajes -----------------
+async function selectRoom(roomId, roomName){
+    if(currentRoomId === roomId) return;
+
+    // UI highlight
+    const prev = roomsListEl.querySelector('.room-item.active');
+    if(prev) prev.classList.remove('active');
+    const el = roomsListEl.querySelector(`[data-room-id="${roomId}"]`);
+    if(el) el.classList.add('active');
+
+    currentRoomId = roomId;
+    document.getElementById('chatTitle').textContent = roomName || 'Sala';
+    messagesEl.innerHTML = '';
+
+    // cancelar listener anterior si existe
+    cancelNewListener();
+
+    // Cargar cache local
+    const cache = loadCache(roomId);
+    newestTimestamp = cache.newest || 0;
+
+    if(cache.msgs && cache.msgs.length){
+        renderMessages(cache.msgs, { preserveScroll:true });
+    } else {
+        await loadLatestPageHistory();
+    }
+
+    // Iniciar listener en tiempo real para nuevos mensajes
+    listenNewMessages();
+
+    // Mostrar composer
+    composer.style.display = 'flex';
+}
+
+// ----------------- Listener para nuevos mensajes en tiempo real -----------------
+async function listenNewMessages(){
+    if(!currentRoomId) return;
+    await ensureFireReady();
+    cancelNewListener();
+
+    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+    const { collection, query, where, orderBy, onSnapshot } = fs;
+
+    const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
+
+    // Solo mensajes con time > newestTimestamp
+    const qNew = query(msgsRef, where('time', '>', newestTimestamp), orderBy('time'));
+    unsubscribeNewMessages = onSnapshot(qNew, snap => {
+        if(!snap.empty){
+            const newMsgs = snap.docs.map(d => ({ id:d.id, ...d.data() }));
+            appendNewMessages(newMsgs);
+        }
+    }, err => console.error('Listener error:', err));
+}
+
+// ----------------- Agregar mensajes nuevos al DOM y caché -----------------
+function appendNewMessages(newMsgs){
+    if(!currentRoomId || !newMsgs || !newMsgs.length) return;
+
+    const cache = loadCache(currentRoomId);
+    const existingIds = new Set(cache.msgs.map(m => m.id));
+
+    const filtered = newMsgs.filter(m => !existingIds.has(m.id));
+    if(!filtered.length) return;
+
+    // actualizar caché
+    cache.msgs = cache.msgs.concat(filtered);
+    if(cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
+    cache.newest = Math.max(cache.newest || 0, ...filtered.map(m => m.time || 0));
+    saveCache(currentRoomId, cache);
+
+    // render solo los nuevos
+    filtered.forEach(m => appendMessageToDOM(m));
+
+    // actualizar timestamp global
+    newestTimestamp = cache.newest;
+}
+
+// ----------------- Cancelar listener -----------------
+function cancelNewListener(){
+    try{
+        if(unsubscribeNewMessages){
+            unsubscribeNewMessages();
+            unsubscribeNewMessages = null;
+        }
+    }catch(e){}
+}
+
+// ----------------- Cargar última página histórica si no hay caché -----------------
+async function loadLatestPageHistory(){
+    if(!currentRoomId) return;
+    await ensureFireReady();
+
+    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+    const { collection, query, orderBy, limit, getDocs } = fs;
+
+    const msgsRef = collection(fire().db, `chat_rooms/${currentRoomId}/messages`);
+    try{
+        const q = query(msgsRef, orderBy('time','desc'), limit(PAGE_SIZE));
+        const snap = await getDocs(q);
+        if(!snap.empty){
+            const docs = snap.docs;
+            docs.reverse(); // ordenar ascendente
+            const msgs = docs.map(d => ({ id:d.id, ...d.data() }));
+            newestTimestamp = msgs[msgs.length-1].time || Date.now();
+            oldestLoadedDoc = docs[0];
+            saveCache(currentRoomId, { msgs, newest: newestTimestamp });
+            renderMessages(msgs);
+        }
+    }catch(e){ console.error('loadLatestPageHistory', e); }
+}
+
+// ----------------- Cancelar listener -----------------
+function cancelNewListener(){
+    try{
+        if(unsubscribeNewMessages){
+            unsubscribeNewMessages();
+            unsubscribeNewMessages = null;
+        }
+    }catch(e){}
+}
+
+            
+
+            // disconnect listener when tab hidden
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) { cancelNewListener(); }
+                else { if (currentRoomId) loadLatestPageAndListen(); }
+            });
+
+            // --------------- Sending messages (debounced) ---------------
+            async function sendMessage(extra = {}) {
+                if (!currentUser || !currentRoomId) return;
+                const text = (msgInput && msgInput.value) ? msgInput.value.trim() : '';
+                if (!text && !extra.audio && !extra.sticker && !extra.image) return;
+
+                // debounce writes: if user sends many messages quickly, queue small delay
+                if (sendTimer) clearTimeout(sendTimer);
+                sendTimer = setTimeout(async () => {
+                    await ensureFireReady();
+                    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                    const { collection, addDoc } = fs;
+                    const data = { from: currentUser, time: Date.now(), text: text || '', ...extra };
+                    if (replyTo) { data.replyTo = { id: replyTo.id, from: replyTo.from, text: replyTo.text || null }; replyTo = null; if (msgInput) msgInput.placeholder = 'Escribe un mensaje...'; }
+                    try {
+                        await addDoc(collection(fire().db, `chat_rooms/${currentRoomId}/messages`), data);
+                        if (msgInput) msgInput.value = '';
+                    } catch (e) { console.error('sendMessage error', e); alert('No se pudo enviar (reglas o cuota)'); }
+                }, DEBOUNCE_MS);
+            }
+            sendBtn.addEventListener('click', e => { e.preventDefault(); sendMessage(); });
+            msgInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
+
+            // --------------- Update message (reaction) ---------------
+            async function updateMessage(msgId, updateObj) {
+                if (!currentRoomId) return;
+                await ensureFireReady();
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { doc, setDoc } = fs;
+                try {
+                    const ref = doc(fire().db, `chat_rooms/${currentRoomId}/messages`, msgId);
+                    await setDoc(ref, updateObj, { merge: true });
+                } catch (e) { console.error('updateMessage', e); }
+            }
+
+            // --------------- Message menu (reactions/reply) ---------------
+            function openMessageMenu(e, msg) {
+                e.stopPropagation();
+                const pad = 8; const menu = msgMenu;
+                menu.style.display = 'flex'; menu.setAttribute('aria-hidden', 'false');
+                const vw = window.innerWidth, vh = window.innerHeight;
+                let left = e.clientX + pad, top = e.clientY + pad;
+                if (left + menu.offsetWidth > vw) left = vw - menu.offsetWidth - pad;
+                if (top + menu.offsetHeight > vh) top = vh - menu.offsetHeight - pad;
+                menu.style.left = left + 'px'; menu.style.top = top + 'px';
+
+                const handler = async ev => {
+                    const react = ev.target.dataset.react; const action = ev.target.dataset.action;
+                    if (react) await updateMessage(msg.id, { reaction: react });
+                    else if (action === 'reply') { replyTo = msg; if (msgInput) { msgInput.placeholder = `Responder a "${msg.text || 'imagen'}"...`; msgInput.focus(); } }
+                    menu.style.display = 'none'; menu.setAttribute('aria-hidden', 'true');
+                    document.removeEventListener('click', handler);
+                };
+                document.addEventListener('click', handler);
+            }
+
+            // --------------- Render messages (from cache or fetch) ---------------
+            function renderMessages(list, opts = {}) {
+                // opts.preserveScroll = if true, don't reset scroll if user was near bottom
+                const preserve = !!opts.preserveScroll;
+                const atBottom = (messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight) < 150;
+                messagesEl.innerHTML = '';
+                if (!list || !list.length) {
+                    const p = document.createElement('div'); p.className = 'msg leidy'; p.style.maxWidth = '100%'; p.textContent = 'Aún no hay mensajes en esta sala.'; messagesEl.appendChild(p); return;
+                }
+                list.forEach(m => {
+                    const div = document.createElement('div'); const cls = (m.from === currentUser) ? 'daniel' : 'leidy'; div.className = 'msg ' + cls;
+                    let inner = `<div class="bubble-content">`;
+                    inner += `<div class="bubble-name">${esc(m.from || '')}</div>`;
+                    if (m.replyTo) inner += `<div class="reply-box">${esc(m.replyTo.from || '')}: ${esc(m.replyTo.text || 'Imagen')}</div>`;
+                    if (m.text) inner += `<div class="bubble-text">${esc(m.text)}</div>`;
+                    // bubble image now uses loading="lazy" + decoding="async"
+                    if (m.image) inner += `<img src="${m.image}" loading="lazy" decoding="async" class="bubble-image" alt="imagen">`;
+                    if (m.sticker) inner += `<div><img src="${m.sticker}" loading="lazy" decoding="async" style="width:140px;border-radius:12px"></div>`;
+                    if (m.audio) inner += `<div><audio controls preload="none" src="${m.audio}"></audio></div>`;
+                    if (m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
+                    inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div>`;
+                    inner += `</div>`;
+                    div.innerHTML = (m.from === currentUser) ? inner + avatarTag(m.from) : avatarTag(m.from) + inner;
+                    div.addEventListener('click', (e) => {
+                        const ignore = ['AUDIO', 'BUTTON', 'A', 'INPUT', 'IMG', 'svg', 'path'];
+                        if (ignore.includes(e.target.tagName)) return;
+                        openMessageMenu(e, m);
+                    });
+                    messagesEl.appendChild(div);
+                });
+                if (preserve && atBottom) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+                else if (!preserve) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+
+                // save cache after render (efficient)
+                const cache = loadCache(currentRoomId); cache.msgs = list; cache.newest = list.length ? list[list.length - 1].time : cache.newest || 0; saveCache(currentRoomId, cache);
+
+                // show load more if messages length >= PAGE_SIZE (likely there are older)
+                loadMoreBtn.style.display = (list.length >= PAGE_SIZE) ? 'block' : 'none';
+            }
+
+            function appendMessageToDOM(m) {
+                // get cache, append, render last part only (for performance we re-render entire list only rarely)
+                const cache = loadCache(currentRoomId);
+                cache.msgs.push(m); if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
+                cache.newest = Math.max(cache.newest || 0, m.time || 0);
+                saveCache(currentRoomId, cache);
+                // append node
+                const div = document.createElement('div'); const cls = (m.from === currentUser) ? 'daniel' : 'leidy'; div.className = 'msg ' + cls;
+                let inner = `<div class="bubble-content">`;
+                inner += `<div class="bubble-name">${esc(m.from || '')}</div>`;
+                if (m.text) inner += `<div class="bubble-text">${esc(m.text)}</div>`;
+                if (m.image) inner += `<img src="${m.image}" loading="lazy" decoding="async" class="bubble-image" alt="imagen">`;
+                if (m.sticker) inner += `<div><img src="${m.sticker}" loading="lazy" decoding="async" style="width:140px;border-radius:12px"></div>`;
+                if (m.audio) inner += `<div><audio controls preload="none" src="${m.audio}"></audio></div>`;
+                if (m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
+                inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div>`;
+                inner += `</div>`;
+                div.innerHTML = (m.from === currentUser) ? inner + avatarTag(m.from) : avatarTag(m.from) + inner;
+                messagesEl.appendChild(div);
+                // auto scroll if near bottom
+                const nearBottom = (messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight) < 150;
+                if (nearBottom) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+            }
+
+            // Avatars use lazy + decoding
+            function avatarTag(name) { const s = esc(name || ''); return `<div class="bubble-avatar"><img src="${s}.jpg" alt="${s}" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>`; }
+
+            // --------------- Utilities ---------------
             async function ensureFireReady() {
                 const start = Date.now();
                 while (!fire() || !fire().db) {
@@ -595,228 +871,20 @@
                 }
             }
 
-            // ---------- Rooms: cargar lista y crear General si no existe ----------
-            async function loadRoomsAndEnsureGeneral() {
-                await ensureFireReady();
-                const { db, collection, query, orderBy, onSnapshot, getDocs } = fire();
-                const roomsCol = collection(db, 'chat_rooms');
+            // --------------- expose for debug ---------------
+            window._chatOpt = { sendMessage, selectRoom };
 
-                // listen to rooms changes
-                const q = query(roomsCol, orderBy('createdAt'));
-                onSnapshot(q, snapshot => {
-                    const rooms = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-                    renderRoomsList(rooms);
-                    // if no rooms exist, create "General"
-                    if (rooms.length === 0) createRoom('General');
-                    // if currentRoomId is null, try to select "General" if exists
-                    if (!currentRoomId) {
-                        const g = rooms.find(r => (r.name && r.name.toLowerCase() === 'general'));
-                        if (g) selectRoom(g.id, g.name);
-                    }
-                }, err => {
-                    console.error('rooms listener error', err);
-                    roomsListEl.innerHTML = '<div style="color:#ffb4b4;padding:8px">Error cargando salas</div>';
-                });
-            }
+            // initial focus
+            passwordInput.focus();
 
-            // create a new room
-            async function createRoom(name) {
-                if (!name) return;
-                await ensureFireReady();
-                const { db, collection, addDoc, serverTimestamp } = fire();
-                try {
-                    // create doc with auto id
-                    const colRef = collection(db, 'chat_rooms');
-                    await addDoc(colRef, { name: name, createdAt: Date.now() });
-                } catch (err) {
-                    console.error('error creating room', err);
+            // click outside hides sticker panel
+            document.addEventListener('click', (e) => {
+                if (stickerPanel.style.display === 'block') {
+                    if (!stickerPanel.contains(e.target) && !btnSticker.contains(e.target)) hideStickers();
                 }
-            }
-
-            function renderRoomsList(rooms) {
-                roomsListEl.innerHTML = '';
-                rooms.forEach(r => {
-                    const el = document.createElement('div');
-                    el.className = 'room-item' + (r.id === currentRoomId ? ' active' : '');
-                    el.dataset.roomId = r.id;
-                    el.textContent = r.name || 'Sala';
-                    el.addEventListener('click', () => selectRoom(r.id, r.name));
-                    roomsListEl.appendChild(el);
-                });
-            }
-
-            // ---------- Room selection ----------
-            async function selectRoom(roomId, roomName) {
-                if (currentRoomId === roomId) return;
-                // remove active class on items
-                const prev = roomsListEl.querySelector('.room-item.active');
-                if (prev) prev.classList.remove('active');
-
-                // mark clicked
-                const el = roomsListEl.querySelector(`[data-room-id="${roomId}"]`);
-                if (el) el.classList.add('active');
-
-                currentRoomId = roomId;
-                currentRoomName = roomName || 'Sala';
-                chatTitle.textContent = currentRoomName;
-                // start listening to messages for this room
-                if (unsubscribeMessages) { unsubscribeMessages(); unsubscribeMessages = null; }
-                await startMessagesListener(roomId);
-            }
-
-            // ---------- Messages listener for a given room ----------
-            async function startMessagesListener(roomId) {
-                await ensureFireReady();
-                const { db, collection, query, orderBy, onSnapshot } = fire();
-                try {
-                    const msgsCol = collection(db, 'chat_rooms');
-                    const roomDocCol = collection(db, `chat_rooms/${roomId}/messages`); // subcollection
-                    const q = query(roomDocCol, orderBy('time'));
-                    unsubscribeMessages = onSnapshot(q, snapshot => {
-                        const msgs = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-                        renderMessages(msgs);
-                    }, err => {
-                        console.error('messages listener error', err);
-                        messagesEl.innerHTML = `<div style="color:#ffb4b4;padding:12px">Error al cargar mensajes: ${err && err.message ? err.message : ''}</div>`;
-                    });
-                } catch (err) {
-                    console.error('startMessagesListener error', err);
-                }
-            }
-
-            // ---------- Send message in current room ----------
-            sendBtn.addEventListener('click', async (e) => { e.preventDefault(); await sendMessage(); });
-            msgInput.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); await sendMessage(); } });
-
-            async function sendMessage() {
-                const text = msgInput.value.trim();
-                if (!text || !currentUser || !currentRoomId) return;
-                await ensureFireReady();
-                const { db, collection, addDoc } = fire();
-                try {
-                    const colRef = collection(db, `chat_rooms/${currentRoomId}/messages`);
-                    await addDoc(colRef, { from: currentUser, text: text, time: Date.now() });
-                    msgInput.value = '';
-                } catch (err) {
-                    console.error('Error al enviar mensaje:', err);
-                }
-            }
-
-            // ---------- Render messages (bubbles with avatar + name) ----------
-            function renderMessages(msgs) {
-                messagesEl.innerHTML = '';
-                if (!msgs || msgs.length === 0) {
-                    const p = document.createElement('div');
-                    p.className = 'msg leidy';
-                    p.style.maxWidth = '100%';
-                    p.textContent = 'Aún no hay mensajes en esta sala.';
-                    messagesEl.appendChild(p);
-                    messagesEl.scrollTop = messagesEl.scrollHeight;
-                    return;
-                }
-
-                msgs.forEach(m => {
-                    const isDaniel = (m.from === 'daniel');
-                    const sideClass = isDaniel ? 'daniel' : 'leidy';
-
-                    const div = document.createElement('div');
-                    div.className = 'msg ' + sideClass;
-
-                    // avatar block
-                    const avatarWrap = document.createElement('div');
-                    avatarWrap.className = 'bubble-avatar';
-                    const img = document.createElement('img');
-                    img.src = (m.from === 'daniel') ? 'daniel.jpg' : 'leidy.jpg';
-                    img.alt = m.from;
-                    img.onerror = function () { this.style.display = 'none'; };
-                    avatarWrap.appendChild(img);
-
-                    // content
-                    const content = document.createElement('div');
-                    content.className = 'bubble-content';
-
-                    const name = document.createElement('div');
-                    name.className = 'bubble-name';
-                    name.textContent = (m.from ? (m.from.charAt(0).toUpperCase() + m.from.slice(1)) : '');
-
-                    const txt = document.createElement('div');
-                    txt.className = 'bubble-text';
-                    txt.innerHTML = esc(m.text || '');
-
-                    const meta = document.createElement('div');
-                    meta.className = 'bubble-meta';
-                    meta.textContent = formatTime(m.time);
-
-                    content.appendChild(name);
-                    content.appendChild(txt);
-                    content.appendChild(meta);
-
-                    if (isDaniel) {
-                        div.appendChild(content);
-                        div.appendChild(avatarWrap);
-                    } else {
-                        div.appendChild(avatarWrap);
-                        div.appendChild(content);
-                    }
-
-                    messagesEl.appendChild(div);
-                });
-
-                // Auto-scroll to bottom (but only if the user is near bottom already)
-                const nearBottom = (messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight) < 150;
-                if (nearBottom) messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
-            }
-
-            // ---------- New room flow ----------
-            btnNewRoom.addEventListener('click', async () => {
-                const name = prompt('Nombre de la nueva sala :');
-                if (!name) return;
-                // create room
-                await createRoom(name.trim());
             });
 
-            // ---------- Login flow ----------
-            loginBtn.addEventListener('click', tryLogin);
-            passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
-
-            function showError(msg) {
-                const old = document.querySelector('.login-card .error');
-                if (old) old.remove();
-                const p = document.createElement('div'); p.className = 'error'; p.style.color = '#ffb4b4'; p.style.marginTop = '8px'; p.textContent = msg;
-                document.querySelector('.login-card').appendChild(p);
-            }
-
-            async function tryLogin() {
-                const pass = passwordInput.value.trim();
-                if (!pass) { showError('Escribe la contraseña.'); return; }
-                const name = accessKeys[pass];
-                if (!name) { showError('Contraseña incorrecta.'); return; }
-
-                currentUser = name;
-                // set header avatar to current user image
-                headerAvatarImg.src = (currentUser === 'daniel') ? 'daniel.jpg' : 'leidy.jpg';
-                headerAvatarImg.onerror = function () { this.style.display = 'none'; };
-
-                activeNameEl.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
-                chatSub.textContent = 'Conectado como ' + activeNameEl.textContent;
-                composer.style.display = 'flex';
-                loginOverlay.style.display = 'none';
-
-                // load rooms and ensure "General"
-                await loadRoomsAndEnsureGeneral();
-            }
-
-            // init
-            (function init() {
-                composer.style.display = 'none';
-                passwordInput.focus();
-                // pre-load rooms list watcher early (after Fire ready)
-                ensureFireReady().then(() => loadRoomsAndEnsureGeneral());
-            })();
-
-            // cleanup
-            window.addEventListener('beforeunload', () => { if (unsubscribeMessages) unsubscribeMessages(); });
-
+            // done
         })();
     </script>
 </body>
