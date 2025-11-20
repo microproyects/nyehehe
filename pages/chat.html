@@ -160,7 +160,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            
+
             flex-shrink: 0;
             border: 2px solid rgba(255, 255, 255, 0.06);
         }
@@ -331,222 +331,377 @@
         }
 
         .msg-menu {
-    position: absolute;
-    background: rgba(20,20,30,0.95);
-    color: #fff;
-    padding: 6px;
-    border-radius: 8px;
-    display: none;
-    flex-direction: column;
-    z-index: 100;
-    font-size: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
+            position: absolute;
+            background: rgba(20, 20, 30, 0.95);
+            color: #fff;
+            padding: 6px;
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
 
-.msg-menu .menu-item {
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
+        .msg-menu .menu-item {
+            padding: 6px 10px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
 
-.msg-menu .menu-item:hover {
-    background: rgba(125,211,252,0.1);
-}
-/* Fotos de perfil más pequeñas en móvil */
-@media (max-width: 480px) {
-    .avatar img,
-    .bubble-avatar img {
-        width: 28px !important;
-        height: 28px !important;
-    }
-}
+        .msg-menu .menu-item:hover {
+            background: rgba(125, 211, 252, 0.1);
+        }
 
-/* Botones de audio, stickers e imagen más compactos */
-.btn-ico {
-    padding: 6px 8px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: none;
-    background: rgba(125, 211, 252, 0.1);
-    color: #7dd3fc;
-    cursor: pointer;
-    transition: background 0.2s;
-}
+        /* Fotos de perfil más pequeñas en móvil */
+        @media (max-width: 480px) {
 
-.btn-ico:hover {
-    background: rgba(125, 211, 252, 0.2);
-}
+            .avatar img,
+            .bubble-avatar img {
+                width: 28px !important;
+                height: 28px !important;
+            }
+        }
 
-/* Composer en móvil más compacto */
-@media (max-width: 480px) {
-    .composer {
-        gap: 2px;
-        padding: 2px;
-    }
+        /* Botones de audio, stickers e imagen más compactos */
+        .btn-ico {
+            padding: 6px 8px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(125, 211, 252, 0.1);
+            color: #7dd3fc;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-    .btn-send {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
+        .btn-ico:hover {
+            background: rgba(125, 211, 252, 0.2);
+        }
 
-    #msgInput {
-        padding: 8px 4px;
-        font-size: 11px;
-    }
-}
+        /* Composer en móvil más compacto */
+        @media (max-width: 480px) {
+            .composer {
+                gap: 2px;
+                padding: 2px;
+            }
 
-/* Reducir tamaño de stickers dentro de panel en móvil */
-@media (max-width: 480px) {
-    .sticker-item img {
-        width: 48px;
-        height: 48px;
-    }
-}
-/* ==== ESTILOS TIPO WHATSAPP PARA MÓVIL ==== */
-@media (max-width: 480px) {
-    /* Panel derecho ocupa toda la pantalla */
-    .panel-right {
-        padding: 8px;
-    }
-    .messages{
-        padding: 2px;
-    }
-    /* Avatar más pequeño */
-    .avatar img,
-    .bubble-avatar img {
-        width: 28px !important;
-        height: 28px !important;
-    }
+            .btn-send {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
 
-    /* Burbuja de mensaje más compacta */
-    .msg {
-        max-width: 85%;
-        font-size: 13px;
-        padding: 8px 10px;
-        border-radius: 12px;
-    }
+            #msgInput {
+                padding: 8px 4px;
+                font-size: 11px;
+            }
+        }
 
-    .bubble-image {
-        width: 160px;
-        max-width: 70%;
-        border-radius: 10px;
-    }
+        /* Reducir tamaño de stickers dentro de panel en móvil */
+        @media (max-width: 480px) {
+            .sticker-item img {
+                width: 48px;
+                height: 48px;
+            }
+        }
 
-    audio {
-        width: 160px;
-    }
+        /* ==== ESTILOS TIPO WHATSAPP PARA MÓVIL ==== */
+        @media (max-width: 480px) {
+
+            /* Panel derecho ocupa toda la pantalla */
+            .panel-right {
+                padding: 8px;
+            }
+
+            .messages {
+                padding: 2px;
+            }
+
+            /* Avatar más pequeño */
+            .avatar img,
+            .bubble-avatar img {
+                width: 28px !important;
+                height: 28px !important;
+            }
+
+            /* Burbuja de mensaje más compacta */
+            .msg {
+                max-width: 85%;
+                font-size: 13px;
+                padding: 8px 10px;
+                border-radius: 12px;
+            }
+
+            .bubble-image {
+                width: 160px;
+                max-width: 70%;
+                border-radius: 10px;
+            }
+
+            audio {
+                width: 160px;
+            }
 
 
 
-    #msgInput {
-        flex: 1;
-        padding: 8px 10px;
-        font-size: 14px;
-        width: 100%;
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.03);
-        background: rgba(255,255,255,0.02);
-    }
+            #msgInput {
+                flex: 1;
+                padding: 8px 10px;
+                font-size: 14px;
+                width: 100%;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.03);
+                background: rgba(255, 255, 255, 0.02);
+            }
 
-    /* Botones circulares pequeños */
-    .btn-ico {
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        font-size: 18px;
-        border-radius: 50%;
-        background: rgba(125,211,252,0.1);
-        color: #7dd3fc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+            /* Botones circulares pequeños */
+            .btn-ico {
+                width: 36px;
+                height: 36px;
+                padding: 0;
+                font-size: 18px;
+                border-radius: 50%;
+                background: rgba(125, 211, 252, 0.1);
+                color: #7dd3fc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-    .btn-ico:hover {
-        background: rgba(125,211,252,0.2);
-    }
+            .btn-ico:hover {
+                background: rgba(125, 211, 252, 0.2);
+            }
 
-    .btn-send {
-        padding: 6px 12px;
-        font-size: 14px;
-        border-radius: 20px;
-        background: linear-gradient(90deg, #06b6d4, #38bdf8);
-        color: #042431;
-    }
-    .card{
-        max-height: 94vh;
-    }
-    /* Panel de stickers compacto */
-    .sticker-panel {
-        bottom: 64px;
-        padding: 6px;
-        max-height: 180px;
-        scrollbar-width: auto;
-    }
+            .btn-send {
+                padding: 6px 12px;
+                font-size: 14px;
+                border-radius: 20px;
+                background: linear-gradient(90deg, #06b6d4, #38bdf8);
+                color: #042431;
+            }
 
-    .sticker-item {
-        width: 48px;
-        height: 48px;
-        border-radius: 8px;
-    }
+            .card {
+                max-height: 94vh;
+            }
 
-    .sticker-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-    }
-    .botonesxd{
-        display: flex;
-        gap: 6px;
-    }
-}
-/* Mantener avatar visible al lado del mensaje */
-@media (max-width: 480px) {
-    .msg {
-        display: flex !important;
-        flex-direction: row !important; /* evita que se invierta */
-        align-items: flex-start;
-        gap: 6px;
-    }
+            /* Panel de stickers compacto */
+            .sticker-panel {
+                bottom: 64px;
+                padding: 6px;
+                max-height: 180px;
+                scrollbar-width: auto;
+            }
 
-    .bubble-avatar {
-        display: block !important; /* asegúrate que siempre se vea */
-    }
+            .sticker-item {
+                width: 48px;
+                height: 48px;
+                border-radius: 8px;
+            }
 
-    .bubble-content {
-        max-width: calc(100% - 36px); /* deja espacio para el avatar */
-    }
-}
-@media (max-width: 480px) {
-    .bubble-image {
-        width: 120px;
-        max-width: 70%;
-        border-radius: 10px;
-    }
-}
+            .sticker-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
 
+            .botonesxd {
+                display: flex;
+                gap: 6px;
+            }
+        }
+
+        /* Mantener avatar visible al lado del mensaje */
+        @media (max-width: 480px) {
+            .msg {
+                display: flex !important;
+                flex-direction: row !important;
+                /* evita que se invierta */
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .bubble-avatar {
+                display: block !important;
+                /* asegúrate que siempre se vea */
+            }
+
+            .bubble-content {
+                max-width: calc(100% - 36px);
+                /* deja espacio para el avatar */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bubble-image {
+                width: 120px;
+                max-width: 70%;
+                border-radius: 10px;
+            }
+        }
+
+        #recordUI {
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 14px;
+            border-radius: 14px;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            width: 260px;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+            animation: slideUp .25s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        .record-box {
+            text-align: center;
+            color: white;
+        }
+
+        .record-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff5656;
+        }
+
+        .record-timer {
+            font-size: 22px;
+            margin-top: 4px;
+        }
+
+        .record-size {
+            font-size: 12px;
+            opacity: .7;
+            margin-bottom: 6px;
+        }
+
+        #recCancel,
+        #recSend {
+            width: 100%;
+            border: none;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #recCancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+
+        #recSend {
+            background: #06b6d4;
+            color: #042431;
+        }
+
+        .msg-menu {
+            position: absolute;
+            background: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 99999;
+            animation: fadeIn .15s ease;
+        }
+
+        .msg-menu div {
+            padding: 6px 10px;
+            background: #333;
+            border-radius: 6px;
+        }
+
+        .msg-menu div:active {
+            background: #444;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .msg-menu {
+            position: absolute;
+            background: linear-gradient(180deg, #1b1b25, #121219);
+            color: #eaf6ff;
+            padding: 8px;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 99999;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+            min-width: 120px;
+            transform-origin: top left;
+        }
+
+        .msg-menu .menu-item {
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background .12s;
+        }
+
+        .msg-menu .menu-item:hover {
+            background: rgba(125, 211, 252, 0.08);
+        }
+
+        @keyframes menuPop {
+            from {
+                opacity: 0;
+                transform: scale(.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 
 </head>
 
 <body>
-    <div id="msgMenu" class="msg-menu" aria-hidden="true">
-        <div class="menu-item" data-react="❤️">❤️</div>
-        <div class="menu-item" data-react="👍">👍</div>
-        <div class="menu-item" data-react="😂">😂</div>
-        <div class="menu-item" data-react="🔥">🔥</div>
-        <div class="menu-item" data-action="reply">💬 Responder</div>
-    </div>
+
+
 
     <div class="card" id="appCard">
-       <div class="panel-left">
-    <div class="rooms-header" style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-weight:700">Salas</div>
-    </div>
-    <div class="rooms-list" id="roomList"></div>
-    <div style="margin-top:auto" class="meta">Perfil activo: <span id="activeName" class="small">—</span></div>
-</div>
+        <div class="panel-left">
+            <div class="rooms-header" style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-weight:700">Salas</div>
+            </div>
+            <div class="rooms-list" id="roomList"></div>
+            <div style="margin-top:auto" class="meta">Perfil activo: <span id="activeName" class="small">—</span></div>
+        </div>
 
 
         <div class="panel-right">
@@ -579,9 +734,9 @@
             <form id="composer" class="composer" onsubmit="return false;" style="display:none">
                 <input id="msgInput" placeholder="Escribe un mensaje..." autocomplete="off" />
                 <div class="botonesxd">
-                <button id="btnRecord" class="btn-ico" type="button" title="Grabar audio">🎤</button>
-                <button id="btnSticker" class="btn-ico" type="button" title="Stickers">🟡</button>
-                <button id="btnImage" class="btn-ico" type="button" title="Enviar imagen">🖼️</button>
+                    <button id="btnRecord" class="btn-ico" type="button" title="Grabar audio">🎤</button>
+                    <button id="btnSticker" class="btn-ico" type="button" title="Stickers">🟡</button>
+                    <button id="btnImage" class="btn-ico" type="button" title="Enviar imagen">🖼️</button>
                 </div>
                 <input type="file" id="imageInput" accept="image/*" style="display:none">
                 <button id="sendBtn" class="btn-send">Enviar</button>
@@ -601,270 +756,479 @@
             </div>
         </div>
     </div>
-
-    <script>
-        (async function () {
-            // ---------------- CONFIG ----------------
-            const ROOM_ID = "general";
-            const ROOM_NAME = "General";
-            const CACHE_LIMIT = 5000;
-            const PAGE_SIZE = 40;
-            const DEBOUNCE_MS = 400;
-            const STICKERS = ["pollo.png", "sticker1.png", "sticker2.webp", "sticker3.webp", "sticker4.webp", "sticker5.webp", "sticker6.webp", "sticker7.webp", "sticker9.webp", "hey-floppa.webp", "no-no-cat.webp", "no-no-cat.webp"];
-
-            // DOM
-            const loginOverlay = document.getElementById('loginOverlay');
-            const passwordInput = document.getElementById('passwordInput');
-            const loginBtn = document.getElementById('loginBtn');
-            const activeNameEl = document.getElementById('activeName');
-            const messagesEl = document.getElementById('messages');
-            const composer = document.getElementById('composer');
-            const msgInput = document.getElementById('msgInput');
-            const sendBtn = document.getElementById('sendBtn');
-            const roomListEl = document.getElementById('roomList'); // panel izquierdo
-            const btnRecord = document.getElementById('btnRecord');
-            const btnSticker = document.getElementById('btnSticker');
-            const stickerPanel = document.getElementById('stickerPanel');
-            const stickerGrid = document.getElementById('stickerGrid');
-            const closeStickers = document.getElementById('closeStickers');
-            const btnImage = document.getElementById('btnImage');
-            const imageInput = document.getElementById('imageInput');
-
-            // STATE
-            const accessKeys = { "marzo10": "leidy", "enero10": "daniel" };
-            let currentUser = null;
-            let newestTimestamp = 0;
-            let replyTo = null;
-            let recorder = null, audioChunks = [];
-            let sendTimer = null;
-            let typingTimer = null;
-            const TYPING_TIMEOUT = 1500;
-
-            // --------------- FIREBASE HELPERS -----------------
-            function fire() { return window.__FIRE && window.__FIRE.db ? window.__FIRE : null; }
-            async function ensureFireReady() { const start = Date.now(); while (!fire() || !fire().db) { if (Date.now() - start > 3000) break; await new Promise(r => setTimeout(r, 50)); } }
-
-            // --------------- CACHE -----------------
-            function loadCache() { try { const raw = localStorage.getItem('chat_cache'); return raw ? JSON.parse(raw) : { msgs: [], newest: 0 }; } catch (e) { return { msgs: [], newest: 0 }; } }
-            function saveCache(cache) { try { if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT); localStorage.setItem('chat_cache', JSON.stringify(cache)); } catch (e) { } }
-
-            // --------------- LOGIN -----------------
-            loginBtn.addEventListener('click', tryLogin);
-            passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
-
-            function tryLogin() {
-                const pass = passwordInput.value.trim();
-                const name = accessKeys[pass];
-                if (!name) return alert('Contraseña incorrecta');
-                currentUser = name;
-                activeNameEl.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
-                loginOverlay.style.display = 'none';
-                composer.style.display = 'flex';
-                initRoomList();
-                loadStickers();
-                initChat();
-            }
-
-            // ----------------- ROOM LIST -----------------
-            async function initRoomList() {
-                await ensureFireReady();
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { collection, doc, getDoc, setDoc } = fs;
-                roomListEl.innerHTML = `<div class="room-item active" id="room-${ROOM_ID}">${ROOM_NAME}</div>`;
-                // Crear sala si no existe
-                const roomRef = doc(fire().db, 'chat_rooms', ROOM_ID);
-                const snap = await getDoc(roomRef);
-                if (!snap.exists()) { await setDoc(roomRef, { name: ROOM_NAME, createdAt: Date.now() }); }
-            }
-
-            // --------------- STICKERS -----------------
-            function loadStickers() {
-                stickerGrid.innerHTML = '';
-                STICKERS.forEach(s => {
-                    const item = document.createElement('div'); item.className = 'sticker-item';
-                    const img = document.createElement('img'); img.src = 'stickers/' + s;
-                    item.appendChild(img);
-                    item.addEventListener('click', async () => { await sendMessage({ sticker: img.src }); hideStickers(); });
-                    stickerGrid.appendChild(item);
-                });
-            }
-            btnSticker.addEventListener('click', e => { e.preventDefault(); toggleStickers(); });
-            closeStickers.addEventListener('click', hideStickers);
-            function toggleStickers() { stickerPanel.style.display = (stickerPanel.style.display === 'block') ? 'none' : 'block'; }
-            function hideStickers() { stickerPanel.style.display = 'none'; }
-
-            // ----------------- IMAGE UPLOAD -----------------
-            btnImage.addEventListener('click', () => imageInput.click());
-            imageInput.addEventListener('change', () => {
-                const file = imageInput.files[0]; if (!file) return;
-                const reader = new FileReader();
-                reader.onloadend = async () => { await sendMessage({ image: reader.result }); imageInput.value = ''; };
-                reader.readAsDataURL(file);
-            });
-
-            // ----------------- AUDIO -----------------
-            btnRecord.addEventListener('click', async e => { e.preventDefault(); if (recorder && recorder.state === 'recording') stopRecording(); else await startRecording(); });
-            async function startRecording() {
-                if (!currentUser) return alert('Entra al chat antes de grabar');
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    recorder = new MediaRecorder(stream); audioChunks = [];
-                    recorder.ondataavailable = e => { if (e.data && e.data.size) audioChunks.push(e.data); };
-                    recorder.onstop = async () => {
-                        const blob = new Blob(audioChunks, { type: audioChunks[0]?.type || 'audio/webm' });
-                        if (blob.size > 1024 * 1024 * 0.9) { alert('Audio muy grande'); return; }
-                        const reader = new FileReader();
-                        reader.onloadend = async () => { await sendMessage({ audio: reader.result, mime: blob.type }); };
-                        reader.readAsDataURL(blob);
-                        try { stream.getTracks().forEach(t => t.stop()); } catch (e) { }
-                    };
-                    recorder.start(); btnRecord.textContent = '⏹️ Grabando...';
-                    setTimeout(() => { if (recorder && recorder.state === 'recording') stopRecording(); }, 20000);
-                } catch (e) { alert('No se pudo acceder al micrófono'); console.error(e); }
-            }
-            function stopRecording() { if (recorder && recorder.state === 'recording') recorder.stop(); recorder = null; btnRecord.textContent = '🎤'; }
-
-            // ----------------- CHAT INIT -----------------
-            async function initChat() {
-                await ensureFireReady();
-                await loadLatestMessages();
-                listenNewMessages();
-                listenTypingStatus();
-            }
-
-            async function loadLatestMessages() {
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { collection, query, orderBy, limit, getDocs } = fs;
-                const msgsRef = collection(fire().db, `chat_rooms/${ROOM_ID}/messages`);
-                try {
-                    const q = query(msgsRef, orderBy('time', 'desc'), limit(PAGE_SIZE));
-                    const snap = await getDocs(q);
-                    if (!snap.empty) {
-                        const docs = snap.docs.reverse();
-                        const msgs = docs.map(d => ({ id: d.id, ...d.data() }));
-                        newestTimestamp = msgs[msgs.length - 1].time || Date.now();
-                        saveCache({ msgs, newest: newestTimestamp });
-                        renderMessages(msgs);
-                    }
-                } catch (e) { console.error('loadLatestMessages', e); }
-            }
-
-            async function listenNewMessages() {
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { collection, query, where, orderBy, onSnapshot } = fs;
-                const msgsRef = collection(fire().db, `chat_rooms/${ROOM_ID}/messages`);
-                const qNew = query(msgsRef, where('time', '>', newestTimestamp), orderBy('time'));
-                onSnapshot(qNew, snap => {
-                    if (!snap.empty) { appendNewMessages(snap.docs.map(d => ({ id: d.id, ...d.data() }))); }
-                });
-            }
-
-            function appendNewMessages(newMsgs) {
-                if (!newMsgs || !newMsgs.length) return;
-                const cache = loadCache();
-                const existingIds = new Set(cache.msgs.map(m => m.id));
-                const filtered = newMsgs.filter(m => !existingIds.has(m.id));
-                if (!filtered.length) return;
-                cache.msgs = cache.msgs.concat(filtered);
-                cache.newest = Math.max(cache.newest || 0, ...filtered.map(m => m.time || 0));
-                saveCache(cache);
-                filtered.forEach(m => appendMessageToDOM(m));
-                newestTimestamp = cache.newest;
-            }
-
-            // ----------------- SEND MESSAGE -----------------
-            async function sendMessage(extra = {}) {
-                if (!currentUser) return;
-                const text = msgInput?.value?.trim() || '';
-                if (!text && !extra.audio && !extra.sticker && !extra.image) return;
-                if (sendTimer) clearTimeout(sendTimer);
-                sendTimer = setTimeout(async () => {
-                    const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                    const { collection, addDoc } = fs;
-                    const data = { from: currentUser, time: Date.now(), text: text || '', ...extra };
-                    if (replyTo) { data.replyTo = { id: replyTo.id, from: replyTo.from, text: replyTo.text || null }; replyTo = null; msgInput.placeholder = 'Escribe un mensaje...'; }
-                    try { await addDoc(collection(fire().db, `chat_rooms/${ROOM_ID}/messages`), data); if (msgInput) msgInput.value = ''; }
-                    catch (e) { console.error('sendMessage', e); alert('No se pudo enviar'); }
-                }, DEBOUNCE_MS);
-            }
-            sendBtn.addEventListener('click', e => { e.preventDefault(); sendMessage(); });
-            msgInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
-
-            // ----------------- TYPING -----------------
-            msgInput.addEventListener('input', () => {
-                setTypingStatus(true);
-                if (typingTimer) clearTimeout(typingTimer);
-                typingTimer = setTimeout(() => setTypingStatus(false), TYPING_TIMEOUT);
-            });
-
-            async function setTypingStatus(isTyping) {
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { doc, setDoc } = fs;
-                try {
-                    await setDoc(doc(fire().db, `chat_rooms/${ROOM_ID}/typing_status`, currentUser), { typing: isTyping, time: Date.now() }, { merge: true });
-                } catch (e) { console.error(e); }
-            }
-
-            async function listenTypingStatus() {
-                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-                const { collection, onSnapshot } = fs;
-                onSnapshot(collection(fire().db, `chat_rooms/${ROOM_ID}/typing_status`), snap => {
-                    const typingUsers = [];
-                    snap.docs.forEach(d => { const data = d.data(); if (data.typing && d.id !== currentUser) typingUsers.push(d.id); });
-                    document.getElementById('typingIndicator').textContent = typingUsers.length ? `${typingUsers.join(', ')} escribiendo...` : '';
-                });
-            }
-
-            // ----------------- RENDER -----------------
-            function renderMessages(list) { messagesEl.innerHTML = ''; list.forEach(m => appendMessageToDOM(m)); }
-            function appendMessageToDOM(m) {
-    const cache = loadCache();
-    cache.msgs.push(m);
-    if (cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
-    cache.newest = Math.max(cache.newest || 0, m.time || 0);
-    saveCache(cache);
-
-    const div = document.createElement('div');
-    div.className = 'msg ' + ((m.from === currentUser) ? 'daniel' : 'leidy');
-
-    // Determinar avatar
-    const avatarUrl = m.from === 'daniel' ? 'daniel.jpg' : 'leidy.jpg';
-
-    // HTML del mensaje
-    let inner = `
-      <div class="bubble-avatar"><img src="${avatarUrl}" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
-      <div class="bubble-content">
-        <div class="bubble-name">${m.from || ''}</div>
-    `;
-
-    if (m.replyTo) inner += `<div class="reply-box">${m.replyTo.from}: ${m.replyTo.text || 'Imagen'}</div>`;
-    if (m.text) inner += `<div class="bubble-text">${m.text}</div>`;
-    if (m.image) inner += `<img src="${m.image}" class="bubble-image" loading="lazy" decoding="async">`;
-    if (m.sticker) inner += `<img src="${m.sticker}" class="bubble-image" style="width:140px;border-radius:12px">`;
-    if (m.audio) inner += `<audio controls preload="none" src="${m.audio}"></audio>`;
-    if (m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
-
-    inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div></div>`;
-
-    div.innerHTML = inner;
-
-    // Permitir responder al mensaje
-    div.addEventListener('click', () => { replyTo = m; });
-
-    messagesEl.appendChild(div);
-
-    // Scroll automático
-    messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
-}
-
-
-            // click fuera oculta stickers
-            document.addEventListener('click', e => { if (stickerPanel.style.display === 'block' && !stickerPanel.contains(e.target) && !btnSticker.contains(e.target)) hideStickers(); });
-
-        })();
-    </script>
-
-
+    <div id="msgMenu" class="msg-menu" aria-hidden="true" style="display:none">
+        <div id="menuReply" class="menu-item">💬 Responder</div>
+        <div id="menuReact" class="menu-item">❤️ Reaccionar</div>
+    </div>
 </body>
+<script>
+(async function () {
+    // ---------------- CONFIG ----------------
+    const ROOM_ID = "general";
+    const ROOM_NAME = "General";
+    const CACHE_LIMIT = 5000;
+    const PAGE_SIZE = 40;
+    const DEBOUNCE_MS = 400;
+    const STICKERS = ["pollo.png","sticker1.png","sticker2.webp","sticker3.webp","sticker4.webp","sticker5.webp","sticker6.webp","sticker7.webp","sticker9.webp","hey-floppa.webp","no-no-cat.webp", "jajaja.webp","gato.webp","gatosorprendido.webp","gatotrite.webp","gatotritedenuevo.webp","OK.webp",];
+
+    // DOM
+    const loginOverlay = document.getElementById('loginOverlay');
+    const passwordInput = document.getElementById('passwordInput');
+    const loginBtn = document.getElementById('loginBtn');
+    const activeNameEl = document.getElementById('activeName');
+    const messagesEl = document.getElementById('messages');
+    const composer = document.getElementById('composer');
+    const msgInput = document.getElementById('msgInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const roomListEl = document.getElementById('roomList');
+    const btnRecord = document.getElementById('btnRecord');
+    const btnSticker = document.getElementById('btnSticker');
+    const stickerPanel = document.getElementById('stickerPanel');
+    const stickerGrid = document.getElementById('stickerGrid');
+    const closeStickers = document.getElementById('closeStickers');
+    const btnImage = document.getElementById('btnImage');
+    const imageInput = document.getElementById('imageInput');
+
+    // small menu items
+    const msgMenuEl = document.getElementById('msgMenu');
+    const menuReply = document.getElementById('menuReply');
+    const menuReact = document.getElementById('menuReact');
+
+    // STATE
+    const accessKeys = { "marzo10": "leidy", "enero10": "daniel" };
+    let currentUser = null;
+    let newestTimestamp = 0;
+    let replyTo = null;
+    let sendTimer = null;
+    let typingTimer = null;
+    const TYPING_TIMEOUT = 1500;
+
+    // FIREBASE HELPERS
+    function fire(){ return window.__FIRE && window.__FIRE.db ? window.__FIRE : null; }
+    async function ensureFireReady(){ const start = Date.now(); while(!fire()||!fire().db){ if(Date.now()-start>3000) break; await new Promise(r=>setTimeout(r,50)); } }
+
+    // CACHE
+    function loadCache(){ try{ const raw = localStorage.getItem('chat_cache'); return raw ? JSON.parse(raw) : { msgs: [], newest: 0 }; } catch(e){ return { msgs: [], newest: 0 }; } }
+    function saveCache(cache){ try{ if(cache.msgs.length>CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT); localStorage.setItem('chat_cache', JSON.stringify(cache)); } catch(e){} }
+
+    // LOGIN
+    loginBtn.addEventListener('click', tryLogin);
+    passwordInput.addEventListener('keydown', e => { if(e.key==='Enter') tryLogin(); });
+
+    function tryLogin(){
+        const pass = passwordInput.value.trim();
+        const name = accessKeys[pass];
+        if(!name) return alert('Contraseña incorrecta');
+        currentUser = name;
+        activeNameEl.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
+        loginOverlay.style.display = 'none';
+        composer.style.display = 'flex';
+        initRoomList();
+        loadStickers();
+        initChat();
+    }
+
+    // ROOMS (single room)
+    async function initRoomList(){
+        await ensureFireReady();
+        const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+        const { doc, getDoc, setDoc } = fs;
+        roomListEl.innerHTML = `<div class="room-item active" id="room-${ROOM_ID}">${ROOM_NAME}</div>`;
+        const roomRef = doc(fire().db, 'chat_rooms', ROOM_ID);
+        try {
+            const snap = await getDoc(roomRef);
+            if(!snap.exists()) await setDoc(roomRef, { name: ROOM_NAME, createdAt: Date.now() });
+        } catch(e){
+            // ignore read errors (rules) - UI keeps working
+            console.warn('initRoomList:', e);
+        }
+    }
+
+    // STICKERS
+    function loadStickers(){
+        stickerGrid.innerHTML = '';
+        STICKERS.forEach(s => {
+            const item = document.createElement('div'); item.className = 'sticker-item';
+            const img = document.createElement('img'); img.src = 'stickers/' + s; img.loading = 'lazy';
+            item.appendChild(img);
+            item.addEventListener('click', async ()=>{ await sendMessage({ sticker: img.src }); hideStickers(); });
+            stickerGrid.appendChild(item);
+        });
+    }
+    btnSticker.addEventListener('click', e=>{ e.preventDefault(); toggleStickers(); });
+    closeStickers.addEventListener('click', hideStickers);
+    function toggleStickers(){ stickerPanel.style.display = (stickerPanel.style.display==='block') ? 'none' : 'block'; }
+    function hideStickers(){ stickerPanel.style.display = 'none'; }
+
+    // IMAGE UPLOAD
+    btnImage.addEventListener('click', ()=> imageInput.click());
+    imageInput.addEventListener('change', ()=>{
+        const file = imageInput.files[0]; if(!file) return;
+        const reader = new FileReader();
+        reader.onloadend = async ()=>{ await sendMessage({ image: reader.result }); imageInput.value = ''; };
+        reader.readAsDataURL(file);
+    });
+
+    // ---------- Sanitizer ----------
+    function esc(str){
+        if(!str) return '';
+        return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // ----------------- AUDIO (UI + limits) -----------------
+    let mediaRecorder = null;
+    let mediaStream = null;
+    let audioChunks = [];
+    let recording = false;
+    let recordIntervalId = null;
+    const MAX_BYTES = 2.5 * 1024 * 1024;
+    const MAX_SECONDS = 60;
+
+    // build record UI once
+    const recordUI = document.createElement('div');
+    recordUI.id = 'recordUI';
+    recordUI.style.cssText = `
+        position:fixed; left:50%; transform:translateX(-50%); bottom:84px;
+        z-index:99999; display:none; align-items:center; gap:12px;
+        background: linear-gradient(90deg,#091014,#0b1216); color:#fff;
+        padding:10px 14px; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    `;
+    recordUI.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:6px;min-width:220px">
+        <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+          <div style="color:#ff5b5b;font-weight:700">● Grabando <span id="recDots">.</span></div>
+          <div id="recTimer" style="min-width:56px;text-align:right;font-family:monospace">00:00</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div id="recSize" style="font-size:13px;opacity:.9">0 KB</div>
+            <div id="recWarn" style="color:#ffcccb;font-size:13px;display:none">Límite 2.5 MB</div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button id="recCancel" style="padding:6px 10px;border-radius:8px;border:none;background:#333;color:#fff;cursor:pointer">Cancelar</button>
+            <button id="recSend" style="padding:6px 10px;border-radius:8px;border:none;background:#06b6d4;color:#042431;cursor:pointer">Enviar</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(recordUI);
+
+    function prettyBytes(n){
+        if(n < 1024) return n + ' B';
+        if(n < 1024*1024) return (n/1024).toFixed(1) + ' KB';
+        return (n/(1024*1024)).toFixed(2) + ' MB';
+    }
+
+    async function startRecording(){
+        if(!currentUser) return alert('Entra al chat antes de grabar');
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaStream = stream;
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+            recording = true;
+            recordUI.style.display = 'flex';
+            document.getElementById('recDots').textContent = '.';
+            document.getElementById('recWarn').style.display = 'none';
+            document.getElementById('recSize').textContent = '0 KB';
+            document.getElementById('recTimer').textContent = '00:00';
+            document.getElementById('recSend').disabled = false;
+
+            mediaRecorder.ondataavailable = e => { if(e.data && e.data.size) audioChunks.push(e.data); };
+            mediaRecorder.start();
+
+            const startedAt = Date.now();
+            recordIntervalId = setInterval(()=>{
+                const elapsed = Math.floor((Date.now() - startedAt)/1000);
+                const mm = String(Math.floor(elapsed/60)).padStart(2,'0');
+                const ss = String(elapsed%60).padStart(2,'0');
+                document.getElementById('recTimer').textContent = `${mm}:${ss}`;
+
+                const size = audioChunks.reduce((s,b)=> s + (b.size||0), 0);
+                document.getElementById('recSize').textContent = prettyBytes(size);
+
+                if(size > MAX_BYTES){
+                    document.getElementById('recWarn').style.display = 'block';
+                    document.getElementById('recSend').disabled = true;
+                } else {
+                    document.getElementById('recWarn').style.display = 'none';
+                    document.getElementById('recSend').disabled = false;
+                }
+
+                // auto-stop at limit
+                if(elapsed >= MAX_SECONDS){
+                    stopRecording(true);
+                }
+            }, 250);
+
+            // buttons handlers
+            document.getElementById('recCancel').onclick = () => {
+                // stop recording and discard
+                if(mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop();
+                cleanupRecordingUI();
+            };
+            document.getElementById('recSend').onclick = () => {
+                if(mediaRecorder && mediaRecorder.state === 'recording') stopRecording(true);
+            };
+
+            // animate dots
+            let dotsInterval = setInterval(()=>{
+                if(!recording) { clearInterval(dotsInterval); return; }
+                const el = document.getElementById('recDots');
+                if(el) el.textContent = el.textContent.length < 3 ? el.textContent + '.' : '.';
+            }, 350);
+
+        } catch (e){
+            console.error('startRecording', e);
+            alert('No se pudo acceder al micrófono');
+        }
+    }
+
+    function cleanupRecordingUI(){
+        recording = false;
+        if(recordIntervalId){ clearInterval(recordIntervalId); recordIntervalId = null; }
+        recordUI.style.display = 'none';
+        try {
+            if(mediaStream) mediaStream.getTracks().forEach(t => t.stop());
+        } catch(e){}
+        mediaStream = null;
+        mediaRecorder = null;
+        audioChunks = [];
+    }
+
+    function stopRecording(autoSend){
+        if(!mediaRecorder) { cleanupRecordingUI(); return; }
+        if(mediaRecorder.state === 'inactive'){ cleanupRecordingUI(); return; }
+
+        mediaRecorder.onstop = async () => {
+            const blob = new Blob(audioChunks, { type: audioChunks[0]?.type || 'audio/webm' });
+            const size = blob.size;
+            if(size > MAX_BYTES){
+                alert('El audio supera 2.5 MB. Cancela o graba más corto.');
+                cleanupRecordingUI();
+                return;
+            }
+            if(autoSend){
+                await sendAudioBlob(blob);
+                cleanupRecordingUI();
+            } else {
+                // fallback: send
+                await sendAudioBlob(blob);
+                cleanupRecordingUI();
+            }
+        };
+        mediaRecorder.stop();
+    }
+
+    async function sendAudioBlob(blob){
+        const reader = new FileReader();
+        reader.onloadend = async () => { await sendMessage({ audio: reader.result, mime: blob.type }); };
+        reader.readAsDataURL(blob);
+    }
+
+    btnRecord.addEventListener('click', (e)=>{ e.preventDefault(); if(!recording) startRecording(); else stopRecording(true); });
+
+    // ---------------- CHAT INIT / LOAD ----------------
+    async function initChat(){ await ensureFireReady(); await loadLatestMessages(); listenNewMessages(); listenTypingStatus(); }
+
+    async function loadLatestMessages(){
+        try {
+            const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+            const { collection, query, orderBy, limit, getDocs } = fs;
+            const msgsRef = collection(fire().db, `chat_rooms/${ROOM_ID}/messages`);
+            const q = query(msgsRef, orderBy('time','desc'), limit(PAGE_SIZE));
+            const snap = await getDocs(q);
+            if(!snap.empty){
+                const docs = snap.docs.reverse();
+                const msgs = docs.map(d => ({ id: d.id, ...d.data() }));
+                newestTimestamp = msgs[msgs.length-1].time || Date.now();
+                saveCache({ msgs, newest: newestTimestamp });
+                renderMessages(msgs);
+            }
+        } catch(e){ console.error('loadLatestMessages', e); }
+    }
+
+    async function listenNewMessages(){
+        try {
+            const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+            const { collection, query, where, orderBy, onSnapshot } = fs;
+            const msgsRef = collection(fire().db, `chat_rooms/${ROOM_ID}/messages`);
+            const qNew = query(msgsRef, where('time','>', newestTimestamp), orderBy('time'));
+            onSnapshot(qNew, snap => {
+                if(!snap.empty) appendNewMessages(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+            });
+        } catch(e){ console.warn('listenNewMessages', e); }
+    }
+
+    function appendNewMessages(newMsgs){
+        if(!newMsgs || !newMsgs.length) return;
+        const cache = loadCache();
+        const existingIds = new Set(cache.msgs.map(m => m.id));
+        const filtered = newMsgs.filter(m => !existingIds.has(m.id));
+        if(!filtered.length) return;
+        cache.msgs = cache.msgs.concat(filtered);
+        cache.newest = Math.max(cache.newest || 0, ...filtered.map(m => m.time || 0));
+        saveCache(cache);
+        filtered.forEach(m => appendMessageToDOM(m));
+        newestTimestamp = cache.newest;
+    }
+
+    // ---------------- SEND MESSAGE ----------------
+    async function sendMessage(extra = {}){
+        if(!currentUser) return;
+        const text = msgInput?.value?.trim() || '';
+        if(!text && !extra.audio && !extra.sticker && !extra.image) return;
+        if(sendTimer) clearTimeout(sendTimer);
+        sendTimer = setTimeout(async () => {
+            try {
+                const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+                const { collection, addDoc } = fs;
+                const data = { from: currentUser, time: Date.now(), text: text || '', ...extra };
+                if(replyTo){ data.replyTo = { id: replyTo.id, from: replyTo.from, text: replyTo.text || null }; replyTo = null; msgInput.placeholder = 'Escribe un mensaje...'; }
+                await addDoc(collection(fire().db, `chat_rooms/${ROOM_ID}/messages`), data);
+                if(msgInput) msgInput.value = '';
+            } catch(e){ console.error('sendMessage', e); alert('No se pudo enviar'); }
+        }, DEBOUNCE_MS);
+    }
+    sendBtn.addEventListener('click', e => { e.preventDefault(); sendMessage(); });
+    msgInput.addEventListener('keydown', e => { if(e.key==='Enter'){ e.preventDefault(); sendMessage(); } });
+
+    // ---------------- TYPING ----------------
+    msgInput.addEventListener('input', () => {
+        setTypingStatus(true);
+        if(typingTimer) clearTimeout(typingTimer);
+        typingTimer = setTimeout(()=> setTypingStatus(false), TYPING_TIMEOUT);
+    });
+
+    async function setTypingStatus(isTyping){
+        try {
+            const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+            const { doc, setDoc } = fs;
+            await setDoc(doc(fire().db, `chat_rooms/${ROOM_ID}/typing_status`, currentUser), { typing: isTyping, time: Date.now() }, { merge: true });
+        } catch(e){ console.error('setTypingStatus', e); }
+    }
+
+    async function listenTypingStatus(){
+        try {
+            const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+            const { collection, onSnapshot } = fs;
+            onSnapshot(collection(fire().db, `chat_rooms/${ROOM_ID}/typing_status`), snap => {
+                const typingUsers = [];
+                snap.docs.forEach(d => { const data = d.data(); if(data.typing && d.id !== currentUser) typingUsers.push(d.id); });
+                document.getElementById('typingIndicator').textContent = typingUsers.length ? `${typingUsers.join(', ')} escribiendo...` : '';
+            });
+        } catch(e){ console.warn('listenTypingStatus', e); }
+    }
+
+    // ---------------- RENDER & MENU ----------------
+    function renderMessages(list){ messagesEl.innerHTML = ''; list.forEach(m => appendMessageToDOM(m)); }
+
+    let selectedMsg = null;
+
+    function appendMessageToDOM(m){
+        const cache = loadCache();
+        cache.msgs.push(m);
+        if(cache.msgs.length > CACHE_LIMIT) cache.msgs = cache.msgs.slice(-CACHE_LIMIT);
+        cache.newest = Math.max(cache.newest || 0, m.time || 0);
+        saveCache(cache);
+
+        const div = document.createElement('div');
+        div.className = 'msg ' + ((m.from === currentUser) ? 'daniel' : 'leidy');
+
+        const avatarUrl = (m.from === 'daniel') ? 'daniel.jpg' : 'leidy.jpg';
+
+        let inner = `
+            <div class="bubble-avatar"><img src="${avatarUrl}" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+            <div class="bubble-content">
+                <div class="bubble-name">${esc(m.from || '')}</div>
+        `;
+        if(m.replyTo) inner += `<div class="reply-box">${esc(m.replyTo.from)}: ${esc(m.replyTo.text || 'Imagen')}</div>`;
+        if(m.text) inner += `<div class="bubble-text">${esc(m.text)}</div>`;
+        if(m.image) inner += `<img src="${m.image}" class="bubble-image" loading="lazy" decoding="async">`;
+        if(m.sticker) inner += `<img src="${m.sticker}" class="bubble-image" style="width:140px;border-radius:12px">`;
+        if(m.audio) inner += `<audio controls preload="none" src="${m.audio}"></audio>`;
+        if(m.reaction) inner += `<div class="reaction">${m.reaction}</div>`;
+        inner += `<div class="bubble-meta">${new Date(m.time || Date.now()).toLocaleTimeString()}</div></div>`;
+
+        div.innerHTML = inner;
+
+        // short tap/click: quick reply (mobile-friendly)
+        div.addEventListener('click', (ev) => {
+            ev.stopPropagation();
+            replyTo = m;
+            msgInput.placeholder = `Respondiendo a ${m.from}...`;
+            div.style.transform = 'scale(0.998)';
+            setTimeout(()=> div.style.transform = '', 110);
+        });
+
+        // right-click opens menu on desktop
+        div.addEventListener('contextmenu', (ev) => {
+            ev.preventDefault(); ev.stopPropagation();
+            openMsgMenuAt(ev.clientX, ev.clientY, m);
+        });
+
+        // long-press on touch devices
+        let touchTimer = null;
+        div.addEventListener('touchstart', (ev) => {
+            touchTimer = setTimeout(() => {
+                const t = ev.touches[0];
+                openMsgMenuAt(t.clientX, t.clientY, m);
+            }, 520);
+        });
+        div.addEventListener('touchend', ()=> { if(touchTimer){ clearTimeout(touchTimer); touchTimer = null; } });
+
+        messagesEl.appendChild(div);
+        messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+    }
+
+    function openMsgMenuAt(x, y, msgData){
+        selectedMsg = msgData;
+        if(!msgMenuEl) return;
+        msgMenuEl.style.display = 'flex';
+        msgMenuEl.style.animation = 'menuPop .12s ease both';
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const mw = Math.min(220, vw - 24);
+        let left = x, top = y;
+        if(left + mw > vw) left = vw - mw - 8;
+        if(top + 120 > vh) top = Math.max(8, vh - 140);
+        msgMenuEl.style.left = left + 'px';
+        msgMenuEl.style.top = top + 'px';
+    }
+
+    // close menu when clicking outside (already handled by global listener earlier)
+    document.addEventListener('click', (ev) => {
+        if(!msgMenuEl) return;
+        if(!msgMenuEl.contains(ev.target)) msgMenuEl.style.display = 'none';
+    });
+
+    // menu actions
+    if(menuReply) menuReply.addEventListener('click', ()=>{
+        if(!selectedMsg) return;
+        replyTo = selectedMsg;
+        msgInput.placeholder = `Respondiendo a ${selectedMsg.from}...`;
+        msgMenuEl.style.display = 'none';
+    });
+    if(menuReact) menuReact.addEventListener('click', async ()=>{
+        if(!selectedMsg) return;
+        try {
+            const fs = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+            const { doc, updateDoc } = fs;
+            await updateDoc(doc(fire().db, `chat_rooms/${ROOM_ID}/messages`, selectedMsg.id), { reaction: "❤️" });
+        } catch(e){ console.error('menuReact', e); }
+        msgMenuEl.style.display = 'none';
+    });
+
+    // click outside stickers hides them
+    document.addEventListener('click', e => {
+        if(stickerPanel && stickerPanel.style.display === 'block' && !stickerPanel.contains(e.target) && !btnSticker.contains(e.target)) hideStickers();
+    });
+
+    // start (focus)
+    passwordInput.focus();
+
+})();
+</script>
+
+
 
 </html>
